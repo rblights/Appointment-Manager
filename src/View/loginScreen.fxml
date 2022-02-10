@@ -31,13 +31,13 @@
    <right>
       <AnchorPane prefHeight="400.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="81.0" layoutY="49.0" text="Appointment Manager" textFill="#154c79">
+            <Label alignment="CENTER" layoutX="81.0" layoutY="49.0" text="Appointment Manager" textFill="#154c79">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameTextfield" layoutX="99.0" layoutY="149.0" promptText="Username" />
-            <PasswordField fx:id="passwordTextfield" layoutX="99.0" layoutY="200.0" promptText="Password" />
+            <TextField fx:id="usernameTextfield" alignment="CENTER" layoutX="99.0" layoutY="149.0" promptText="Username" />
+            <PasswordField fx:id="passwordTextfield" alignment="CENTER" layoutX="99.0" layoutY="200.0" promptText="Password" />
             <Button fx:id="loginButton" alignment="CENTER" layoutX="98.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="22.0" prefWidth="146.0" style="-fx-background-color: #154c79;" text="Login" textFill="WHITE" />
             <Button fx:id="exitButton" alignment="CENTER" layoutX="101.0" layoutY="316.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="22.0" prefWidth="146.0" style="-fx-background-color: White;" text="Exit" textFill="#154c79" />
             <Label fx:id="languageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="378.0" prefHeight="16.0" prefWidth="162.0" />
