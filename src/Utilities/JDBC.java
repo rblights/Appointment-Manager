@@ -1,4 +1,4 @@
-package Helper;
+package Utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,7 +24,12 @@ public class JDBC {
         }
         catch(Exception e) {
             System.out.println("Error:" + e.getMessage());
+            e.printStackTrace();
         }
+    }
+
+    public static Connection getConnection() {
+        return connection;
     }
 
     public static void closeConnection() {
@@ -34,6 +39,7 @@ public class JDBC {
         }
         catch(Exception e) {
             System.out.println("Error:" + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
