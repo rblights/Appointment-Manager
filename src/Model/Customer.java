@@ -1,5 +1,8 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Customer {
 
     private int customer_ID;
@@ -7,17 +10,15 @@ public class Customer {
     private String address;
     private String postal_Code;
     private String phone;
-    private Division division_ID;
-    private Country country;
+    private Division divisionID;
 
-    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, Division division_ID, Country country) {
-        setCustomer_ID(customer_ID);
-        setCustomer_Name(customer_Name);
-        setAddress(address);
-        setPostal_Code(postal_Code);
-        setPhone(phone);
-        setDivision_ID(division_ID);
-        setCountry(country);
+    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, Division divisionID) {
+        this.customer_ID = customer_ID;
+        this.customer_Name = customer_Name;
+        this.address = address;
+        this.postal_Code = postal_Code;
+        this.phone = phone;
+        this.divisionID = divisionID;
     }
 
     public int getCustomer_ID() {
@@ -60,20 +61,12 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Division getDivision_ID() {
-        return division_ID;
+    public Division getDivisionID() {
+        return divisionID;
     }
 
-    public void setDivision_ID(Division division_ID) {
-        this.division_ID = division_ID;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setDivisionID(Division divisionID) {
+        this.divisionID = divisionID;
     }
 
     public String toString() {

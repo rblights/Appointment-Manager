@@ -4,9 +4,9 @@ public class Division {
 
     private int division_ID;
     private String divisionName;
-    private int country_ID;
+    private Country country_ID;
 
-    public Division(int division_ID, String divisionName, int country_ID) {
+    public Division(int division_ID, String divisionName, Country country_ID) {
         setDivision_ID(division_ID);
         setDivisionName(divisionName);
         setCountry_ID(country_ID);
@@ -28,13 +28,14 @@ public class Division {
         this.divisionName = divisionName;
     }
 
-    public int getCountry_ID() {
+    public Country getCountry_ID() {
         return country_ID;
     }
 
-    public void setCountry_ID(int country_ID) {
+    public void setCountry_ID(Country country_ID) {
         this.country_ID = country_ID;
     }
+
     public String toString(Division division) {
         return division.getDivisionName();
     }
