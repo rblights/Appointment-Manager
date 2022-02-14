@@ -1,4 +1,4 @@
-package Model;
+package MVC.Model;
 
 public class Contact {
 

@@ -1,4 +1,4 @@
-package Model;
+package MVC.Model;
 
 import java.util.Date;
 
@@ -14,8 +14,9 @@ public class Appointment {
     private int customer_ID;
     private int contact_ID;
     private int user_ID;
+    private String contactName;
 
-    public Appointment(int appointment_ID, String title, String description, String location, String type, Date start, Date end, int customer_ID, int contact_ID, int user_ID) {
+    public Appointment(int appointment_ID, String title, String description, String location, String type, Date start, Date end, int customer_ID, int contact_ID, int user_ID, String contactName) {
         setAppointment_ID(appointment_ID);
         setTitle(title);
         setDescription(description);
@@ -26,6 +27,7 @@ public class Appointment {
         setCustomer_ID(customer_ID);
         setContact_ID(contact_ID);
         setUser_ID(user_ID);
+        setContactName(contactName);
     }
 
     public int getAppointment_ID() {
@@ -106,6 +108,14 @@ public class Appointment {
 
     public void setUser_ID(int user_ID) {
         this.user_ID = user_ID;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 
     public String toString(Appointment appointment) {

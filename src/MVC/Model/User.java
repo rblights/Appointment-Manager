@@ -1,6 +1,7 @@
-package Model;
+package MVC.Model;
 
 public class User {
+    private static User user;
     private int user_ID;
     private String user_Name;
     private String password;
@@ -9,6 +10,14 @@ public class User {
         setUser_ID(user_ID);
         setUser_Name(user_Name);
         setPassword(password);
+    }
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        User.user = user;
     }
 
     public int getUser_ID() {
@@ -35,6 +44,6 @@ public class User {
         this.password = password;
     }
     public String toString(User user) {
-        return user.getUser_Name();
+        return getUser_Name();
     }
 }

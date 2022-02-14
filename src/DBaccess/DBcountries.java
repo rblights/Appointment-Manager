@@ -1,6 +1,6 @@
 package DBaccess;
 
-import Model.Country;
+import MVC.Model.Country;
 import Utilities.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

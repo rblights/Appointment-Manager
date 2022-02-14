@@ -1,4 +1,4 @@
-package Model;
+package MVC.Model;
 
 public class Country {
 
@@ -26,7 +26,7 @@ public class Country {
         this.countryName = countryName;
     }
 
-    public String toString(Country country) {
-        return country.getCountryName();
+    public String toString() {
+        return getCountryName();
     }
 }

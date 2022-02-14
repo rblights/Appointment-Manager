@@ -1,4 +1,4 @@
-package Model;
+package MVC.Model;
 
 public class Division {
 
@@ -36,7 +36,7 @@ public class Division {
         this.country_ID = country_ID;
     }
 
-    public String toString(Division division) {
-        return division.getDivisionName();
+    public String toString() {
+        return getDivisionName();
     }
 }

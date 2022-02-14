@@ -1,6 +1,6 @@
 package DBaccess;
 
-import Model.User;
+import MVC.Model.User;
 import Utilities.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

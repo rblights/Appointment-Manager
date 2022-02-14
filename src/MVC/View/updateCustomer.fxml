@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.Controller.updateCustomerController">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <right>
+            <GridPane alignment="CENTER" prefHeight="291.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="67.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="113.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="132.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Customer ID" />
+                  <Label text="Name" GridPane.rowIndex="1" />
+                  <Label text="Address" GridPane.rowIndex="2" />
+                  <Label text="Postal Code" GridPane.rowIndex="3" />
+                  <Label text="Phone" GridPane.rowIndex="4" />
+                  <Label text="Country" GridPane.rowIndex="5" />
+                  <Label text="Division" GridPane.rowIndex="6" />
+                  <TextField fx:id="IDTextfield" disable="true" editable="false" GridPane.columnIndex="1" />
+                  <TextField fx:id="nameTextfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="addressTextfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="postalCodeTextfield" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="phoneTextfield" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="countryCombobox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="divisionCombobox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </GridPane>
+         </right>
+         <left>
+            <AnchorPane prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #154c79;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" layoutX="64.0" layoutY="125.0" text="Update" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="44.0" layoutY="200.0" text="Customer" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Line endX="100.0" layoutX="126.0" layoutY="191.0" startX="-100.0" stroke="WHITE" />
+                  <Button fx:id="updateCustomerButton" layoutX="180.0" layoutY="336.0" mnemonicParsing="false" style="-fx-background-color: White;" text="Update" textFill="#154c79" />
+                  <Button fx:id="cancelCustomerButton" layoutX="182.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #154c79;" text="Cancel" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

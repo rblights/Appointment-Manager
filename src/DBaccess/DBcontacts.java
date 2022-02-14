@@ -1,6 +1,6 @@
 package DBaccess;
 
-import Model.Contact;
+import MVC.Model.Contact;
 import Utilities.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

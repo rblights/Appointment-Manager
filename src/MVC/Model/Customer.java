@@ -1,7 +1,4 @@
-package Model;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+package MVC.Model;
 
 public class Customer {
 
@@ -11,14 +8,16 @@ public class Customer {
     private String postal_Code;
     private String phone;
     private Division divisionID;
+    private String divisionName;
 
-    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, Division divisionID) {
+    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, Division divisionID, String divisionName) {
         this.customer_ID = customer_ID;
         this.customer_Name = customer_Name;
         this.address = address;
         this.postal_Code = postal_Code;
         this.phone = phone;
         this.divisionID = divisionID;
+        this.divisionName = divisionName;
     }
 
     public int getCustomer_ID() {
@@ -67,6 +66,14 @@ public class Customer {
 
     public void setDivisionID(Division divisionID) {
         this.divisionID = divisionID;
+    }
+
+    public String getDivisionName() {
+        return divisionName;
+    }
+
+    public void setDivisionName(String divisionName) {
+        this.divisionName = divisionName;
     }
 
     public String toString() {
