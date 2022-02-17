@@ -1,10 +1,11 @@
 package MVC.Controller;
 
 import DBaccess.DBappointments;
-import DBaccess.DBcontacts;
+import DBaccess.DBcustomers;
 import MVC.Model.Appointment;
 import MVC.Model.Contact;
 import Utilities.SceneSwitcher;
+import Utilities.Selector;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -103,8 +104,12 @@ public class appointmentsScreenController implements Initializable {
     }
 
     public void updateButtonOnAction(ActionEvent event) throws IOException {
+        Selector.setSelectedAppointment(appointmentTableview.getSelectionModel().getSelectedItem());
         SceneSwitcher.switchScene(event, "../MVC/View/updateAppointment.fxml", "Update Appointments");
     }
 
-    public void deleteButtonOnAction(ActionEvent event) {}
+    public void deleteButtonOnAction(ActionEvent event) throws SQLException {
+        DBappointments.deleteAppointment(appointmentTableview.getSelectionModel().getSelectedItem());
+        appointmentTableview.setItems(DBappointments.getAllAppointments());
+    }
 }

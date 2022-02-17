@@ -7,17 +7,15 @@ public class Customer {
     private String address;
     private String postal_Code;
     private String phone;
-    private Division divisionID;
-    private String divisionName;
+    private int divisionID;
 
-    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, Division divisionID, String divisionName) {
+    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, int divisionID) {
         this.customer_ID = customer_ID;
         this.customer_Name = customer_Name;
         this.address = address;
         this.postal_Code = postal_Code;
         this.phone = phone;
         this.divisionID = divisionID;
-        this.divisionName = divisionName;
     }
 
     public int getCustomer_ID() {
@@ -60,24 +58,16 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Division getDivisionID() {
+    public int getDivisionID() {
         return divisionID;
     }
 
-    public void setDivisionID(Division divisionID) {
+    public void setDivisionID(int divisionID) {
         this.divisionID = divisionID;
     }
 
-    public String getDivisionName() {
-        return divisionName;
-    }
-
-    public void setDivisionName(String divisionName) {
-        this.divisionName = divisionName;
-    }
-
     public String toString() {
-        return String.format("%s lives at %s, in the postal area %s, with phone number %S", customer_Name, address, postal_Code, phone);
+        return String.format("%d", customer_ID);
     }
 }
 

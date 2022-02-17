@@ -1,7 +1,6 @@
 package DBaccess;
 
 import MVC.Model.Appointment;
-import MVC.Model.Division;
 import MVC.Model.User;
 import Utilities.JDBC;
 import javafx.collections.FXCollections;
@@ -113,7 +112,7 @@ public class DBappointments {
 
     }
 
-    public static void deleteAppointment(int appointmentID) {
+    public static void deleteAppointment(Appointment appointment) {
 
         try {
 
@@ -121,7 +120,7 @@ public class DBappointments {
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
-            ps.setInt(1, appointmentID);
+            ps.setInt(1, appointment.getAppointment_ID());
 
             ps.execute();
 

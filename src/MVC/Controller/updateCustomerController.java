@@ -1,6 +1,7 @@
 package MVC.Controller;
 
 import DBaccess.DBcountries;
+import DBaccess.DBcustomers;
 import DBaccess.DBdivisions;
 import MVC.Model.Country;
 import MVC.Model.Customer;
@@ -31,20 +32,19 @@ public class updateCustomerController implements Initializable {
         divisionCombobox.setItems(divisions);
 
         Customer selectedCustomer = Selector.getSelectedCustomer();
-        Country customerCountry = selectedCustomer.getDivisionID().getCountry_ID();
-        Division customerDivision = selectedCustomer.getDivisionID();
 
         IDTextfield.setText(Integer.toString(selectedCustomer.getCustomer_ID()));
         nameTextfield.setText(selectedCustomer.getCustomer_Name());
         addressTextfield.setText(selectedCustomer.getAddress());
         postalCodeTextfield.setText(selectedCustomer.getPostal_Code());
         phoneTextfield.setText(selectedCustomer.getPhone());
-        for (Country country : countryCombobox.getItems())
-            if (country.getCountry_ID() == customerCountry.getCountry_ID())
-                countryCombobox.setValue(customerCountry);
         for (Division division : divisionCombobox.getItems())
-            if (division.getDivision_ID() == customerDivision.getDivision_ID())
-                divisionCombobox.setValue(customerDivision);
+            if (division.getDivision_ID() == selectedCustomer.getDivisionID()) {
+                divisionCombobox.setValue(division);
+                for (Country country : countryCombobox.getItems())
+                    if (country.getCountry_ID() == division.getCountry_ID())
+                    countryCombobox.setValue(country);
+            }
     }
 
     @FXML
@@ -75,6 +75,20 @@ public class updateCustomerController implements Initializable {
     private Button cancelCustomerButton;
 
     public void cancelButtonOnAction(ActionEvent event) throws IOException {
+        SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
+    }
+
+    public void updateButtonOnAction(ActionEvent event) throws IOException {
+
+        int updatedDivisionID = 0;
+
+        for (Division division : DBdivisions.getAllDivisions())
+            if (division == divisionCombobox.getSelectionModel().getSelectedItem())
+                updatedDivisionID = division.getDivision_ID();
+
+        DBcustomers.updateCustomer(Integer.parseInt(IDTextfield.getText()), nameTextfield.getText(), addressTextfield.getText(), postalCodeTextfield.getText(),
+                phoneTextfield.getText(), updatedDivisionID);
+
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }
 }

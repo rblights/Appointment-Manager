@@ -36,7 +36,7 @@ public class Contact {
         this.contactEmail = contactEmail;
     }
 
-    public String toString(Contact contact) {
-        return String.format("");
+    public String toString() {
+        return String.format("%s", contactName);
     }
 }

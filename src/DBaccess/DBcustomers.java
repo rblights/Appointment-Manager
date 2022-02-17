@@ -32,13 +32,9 @@ public class DBcustomers {
                 String customerPostal = rs.getString("Postal_Code");
                 String customerPhone = rs.getString("Phone");
                 int divisionID = rs.getInt("Division_ID");
-                String divisionName = rs.getString("Division");
 
-                for (Division division : DBdivisions.getAllDivisions())
-                    if (division.getDivision_ID() == divisionID) {
-                        Customer customer = new Customer(customerID, customerName, customerAddress, customerPostal, customerPhone, division, divisionName);
-                        customerList.add(customer);
-                    }
+                Customer customer = new Customer(customerID, customerName, customerAddress, customerPostal, customerPhone, divisionID);
+                customerList.add(customer);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -71,8 +67,7 @@ public class DBcustomers {
         }
     }
 
-    public static void updateCustomer(int customer_ID, String Customer_Name, String Address, String Postal_Code, String Phone,
-                                      String Last_Updated_By, Division Division_ID) {
+    public static void updateCustomer(int Customer_ID,String Customer_Name, String Address, String Postal_Code, String Phone, int Division_ID) {
 
         try {
             String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, " +
@@ -86,8 +81,8 @@ public class DBcustomers {
             ps.setString(4, Phone);
             ps.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
             ps.setString(6, User.getCurrentUser());
-            ps.setString(6, Division_ID.getDivisionName());
-            ps.setInt(7, customer_ID);
+            ps.setInt(7, Division_ID);
+            ps.setInt(8, Customer_ID);
 
             ps.execute();
 
@@ -99,7 +94,7 @@ public class DBcustomers {
     public static void deleteCustomer(Customer customer) throws SQLException {
         for (Appointment appointment : DBappointments.getAllAppointments()) {
             if (appointment.getCustomer_ID() == customer.getCustomer_ID())
-                DBappointments.deleteAppointment(appointment.getAppointment_ID());
+                DBappointments.deleteAppointment(appointment);
 
         }
         try {

@@ -69,7 +69,7 @@
                      </font>
                   </Label>
                   <Line endX="100.0" layoutX="126.0" layoutY="191.0" startX="-100.0" stroke="WHITE" />
-                  <Button fx:id="updateCustomerButton" layoutX="180.0" layoutY="336.0" mnemonicParsing="false" style="-fx-background-color: White;" text="Update" textFill="#154c79" />
+                  <Button fx:id="updateCustomerButton" layoutX="180.0" layoutY="336.0" mnemonicParsing="false" onAction="#updateButtonOnAction" style="-fx-background-color: White;" text="Update" textFill="#154c79" />
                   <Button fx:id="cancelCustomerButton" layoutX="182.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #154c79;" text="Cancel" textFill="WHITE" />
                </children>
             </AnchorPane>

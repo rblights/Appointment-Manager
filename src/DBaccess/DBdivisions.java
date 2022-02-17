@@ -1,6 +1,5 @@
 package DBaccess;
 
-import MVC.Model.Country;
 import MVC.Model.Division;
 import Utilities.JDBC;
 import javafx.collections.FXCollections;
@@ -25,11 +24,8 @@ public class DBdivisions {
                 String divisionName = rs.getString("Division");
                 int countryID = rs.getInt("Country_ID");
 
-                for (Country country : DBcountries.getAllCountries())
-                    if (country.getCountry_ID() == countryID) {
-                        Division division = new Division(divisionID, divisionName, country);
-                        divisionList.add(division);
-                    }
+                Division division = new Division(divisionID, divisionName, countryID);
+                divisionList.add(division);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
