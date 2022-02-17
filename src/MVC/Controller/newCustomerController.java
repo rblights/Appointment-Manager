@@ -5,7 +5,6 @@ import DBaccess.DBcustomers;
 import DBaccess.DBdivisions;
 import MVC.Model.Country;
 import MVC.Model.Division;
-import MVC.Model.User;
 import Utilities.SceneSwitcher;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,9 +60,12 @@ public class newCustomerController<Divison> implements Initializable {
     private Button cancelCustomerButton;
 
 
-    public void addCustomerButtonOnAction() throws SQLException {
-        DBcustomers.insertCustomer(nameTextfield.getText(), addressTextfield.getText(), postalCodeTextfield.getText(),
-                phoneTextfield.getText(), "user", "user", divisionCombobox.getValue());
+    public void addCustomerButtonOnAction(ActionEvent event) throws SQLException, IOException {
+        DBcustomers.insertCustomer(nameTextfield.getText(),
+                                   addressTextfield.getText(),
+                                   postalCodeTextfield.getText(),
+                                   phoneTextfield.getText(),
+                                   divisionCombobox.getValue());
 
         nameTextfield.clear();
         addressTextfield.clear();
@@ -71,6 +73,8 @@ public class newCustomerController<Divison> implements Initializable {
         phoneTextfield.clear();
         countryCombobox.getSelectionModel().clearSelection();
         divisionCombobox.getSelectionModel().clearSelection();
+
+        SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
 
     }
 

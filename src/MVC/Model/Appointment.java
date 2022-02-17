@@ -1,6 +1,6 @@
 package MVC.Model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Appointment {
 
@@ -9,14 +9,15 @@ public class Appointment {
     private String description;
     private String location;
     private String type;
-    private Date start;
-    private Date end;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private int customer_ID;
     private int contact_ID;
     private int user_ID;
     private String contactName;
 
-    public Appointment(int appointment_ID, String title, String description, String location, String type, Date start, Date end, int customer_ID, int contact_ID, int user_ID, String contactName) {
+    public Appointment(int appointment_ID, String title, String description, String location, String type, LocalDateTime start,
+                       LocalDateTime end, int customer_ID, int contact_ID, int user_ID, String contactName) {
         setAppointment_ID(appointment_ID);
         setTitle(title);
         setDescription(description);
@@ -70,19 +71,19 @@ public class Appointment {
         this.type = type;
     }
 
-    public Date getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 

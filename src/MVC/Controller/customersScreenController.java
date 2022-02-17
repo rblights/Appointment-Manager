@@ -3,6 +3,7 @@ package MVC.Controller;
 import DBaccess.DBcustomers;
 import MVC.Model.Customer;
 import Utilities.SceneSwitcher;
+import Utilities.Selector;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class customersScreenController implements Initializable {
@@ -45,6 +47,12 @@ public class customersScreenController implements Initializable {
     private Button addButton;
 
     @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button reportsButton;
+
+    @FXML
     private TableView<Customer> customerTableview;
 
     @FXML
@@ -74,7 +82,13 @@ public class customersScreenController implements Initializable {
     }
 
     public void updateButtonOnAction(ActionEvent event) throws IOException {
+        Selector.setSelectedCustomer(customerTableview.getSelectionModel().getSelectedItem());
         SceneSwitcher.switchScene(event, "../MVC/View/updateCustomer.fxml", "Update Customer");
+    }
+
+    public void deleteButtonOnAction(ActionEvent event) throws SQLException {
+        DBcustomers.deleteCustomer(customerTableview.getSelectionModel().getSelectedItem());
+        customerTableview.setItems(DBcustomers.getAllCustomers());
     }
 
 }

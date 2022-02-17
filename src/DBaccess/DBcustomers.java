@@ -1,7 +1,9 @@
 package DBaccess;
 
+import MVC.Model.Appointment;
 import MVC.Model.Customer;
 import MVC.Model.Division;
+import MVC.Model.User;
 import Utilities.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +11,7 @@ import javafx.collections.ObservableList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class DBcustomers {
@@ -43,8 +46,7 @@ public class DBcustomers {
         return customerList;
     }
 
-    public static void insertCustomer(String Customer_Name, String Address, String Postal_Code, String Phone, String Created_By,
-                                      String Last_Updated_By, Division Division_ID) throws SQLException {
+    public static void insertCustomer(String Customer_Name, String Address, String Postal_Code, String Phone, Division Division_ID) throws SQLException {
 
         try {
 
@@ -56,16 +58,62 @@ public class DBcustomers {
             ps.setString(2, Address);
             ps.setString(3, Postal_Code);
             ps.setString(4, Phone);
-            ps.setString(5, String.valueOf(LocalDateTime.now()));
-            ps.setString(6, Created_By);
-            ps.setString(7, String.valueOf(LocalDateTime.now()));
-            ps.setString(8, Last_Updated_By);
+            ps.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setString(6, User.getCurrentUser());
+            ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setString(8, User.getCurrentUser());
             ps.setInt(9, Division_ID.getDivision_ID());
 
             ps.execute();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+    public static void updateCustomer(int customer_ID, String Customer_Name, String Address, String Postal_Code, String Phone,
+                                      String Last_Updated_By, Division Division_ID) {
+
+        try {
+            String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, " +
+                    "Last_Updated_By = ?, Division_ID = ?, WHERE Customer_ID = ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setString(1, Customer_Name);
+            ps.setString(2, Address);
+            ps.setString(3, Postal_Code);
+            ps.setString(4, Phone);
+            ps.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setString(6, User.getCurrentUser());
+            ps.setString(6, Division_ID.getDivisionName());
+            ps.setInt(7, customer_ID);
+
+            ps.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteCustomer(Customer customer) throws SQLException {
+        for (Appointment appointment : DBappointments.getAllAppointments()) {
+            if (appointment.getCustomer_ID() == customer.getCustomer_ID())
+                DBappointments.deleteAppointment(appointment.getAppointment_ID());
+
+        }
+        try {
+
+            String sql = "DELETE FROM customers WHERE Customer_ID = ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setInt(1, customer.getCustomer_ID());
+
+            ps.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

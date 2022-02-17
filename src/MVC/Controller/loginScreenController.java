@@ -1,5 +1,6 @@
 package MVC.Controller;
 
+import MVC.Model.User;
 import Utilities.JDBC;
 import Utilities.SceneSwitcher;
 import javafx.event.ActionEvent;
@@ -37,27 +38,30 @@ public class loginScreenController {
     @FXML
     private Label loginLabel;
 
-    public void loginButtonOnAction(ActionEvent event) {
+    public void loginButtonOnAction(ActionEvent event) throws SQLException {
         if (usernameTextfield.getText().isBlank() || passwordTextfield.getText().isBlank()) {
             loginLabel.setText("Username & Password cannot be blank");
         } else {
 
             Connection connect = JDBC.getConnection();
-            String validateLogin = "SELECT count(1) FROM users WHERE User_Name = '" + usernameTextfield.getText() + "' AND Password = '" + passwordTextfield.getText() + "'";
+            String sql = "SELECT User_Name, User_ID FROM users WHERE User_Name = '" + usernameTextfield.getText() + "' AND Password = '" + passwordTextfield.getText() + "'";
 
             try {
 
                 Statement statement = connect.createStatement();
-                ResultSet queryResult = statement.executeQuery(validateLogin);
+                ResultSet rs = statement.executeQuery(sql);
 
-                while (queryResult.next()) {
-                    if (queryResult.getInt(1) == 1) {
-                        loginLabel.setText("Logging in...");
-                        SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");
-                    } else {
-                        loginLabel.setText("Match Not Found");
+                if (rs.isBeforeFirst()) {
+                    while (rs.next()) {
+                        User.setCurrentUser(rs.getString("User_Name"));
+                        User.setCurrentUserID(rs.getInt("User_ID"));
                     }
+                    loginLabel.setText("Logging in...");
+                    SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");
+                } else {
+                    loginLabel.setText("Match Not Found");
                 }
+
                 usernameTextfield.clear();
                 passwordTextfield.clear();
 

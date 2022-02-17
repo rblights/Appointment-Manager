@@ -3,8 +3,10 @@ package MVC.Controller;
 import DBaccess.DBcountries;
 import DBaccess.DBdivisions;
 import MVC.Model.Country;
+import MVC.Model.Customer;
 import MVC.Model.Division;
 import Utilities.SceneSwitcher;
+import Utilities.Selector;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +30,21 @@ public class updateCustomerController implements Initializable {
         ObservableList<Division> divisions = DBdivisions.getAllDivisions();
         divisionCombobox.setItems(divisions);
 
+        Customer selectedCustomer = Selector.getSelectedCustomer();
+        Country customerCountry = selectedCustomer.getDivisionID().getCountry_ID();
+        Division customerDivision = selectedCustomer.getDivisionID();
+
+        IDTextfield.setText(Integer.toString(selectedCustomer.getCustomer_ID()));
+        nameTextfield.setText(selectedCustomer.getCustomer_Name());
+        addressTextfield.setText(selectedCustomer.getAddress());
+        postalCodeTextfield.setText(selectedCustomer.getPostal_Code());
+        phoneTextfield.setText(selectedCustomer.getPhone());
+        for (Country country : countryCombobox.getItems())
+            if (country.getCountry_ID() == customerCountry.getCountry_ID())
+                countryCombobox.setValue(customerCountry);
+        for (Division division : divisionCombobox.getItems())
+            if (division.getDivision_ID() == customerDivision.getDivision_ID())
+                divisionCombobox.setValue(customerDivision);
     }
 
     @FXML

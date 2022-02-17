@@ -1,7 +1,8 @@
 package MVC.Model;
 
 public class User {
-    private static User user;
+    private static String currentUser;
+    private static int currentUserID;
     private int user_ID;
     private String user_Name;
     private String password;
@@ -12,12 +13,21 @@ public class User {
         setPassword(password);
     }
 
-    public static User getUser() {
-        return user;
+
+    public static String getCurrentUser() {
+        return currentUser;
     }
 
-    public static void setUser(User user) {
-        User.user = user;
+    public static void setCurrentUser(String currentUser) {
+        User.currentUser = currentUser;
+    }
+
+    public static int getCurrentUserID() {
+        return currentUserID;
+    }
+
+    public static void setCurrentUserID(int currentUserID) {
+        User.currentUserID = currentUserID;
     }
 
     public int getUser_ID() {

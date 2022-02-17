@@ -59,6 +59,9 @@ public class appointmentsScreenController implements Initializable {
     private Button addButton;
 
     @FXML
+    private Button deleteButton;
+
+    @FXML
     private TableView<Appointment> appointmentTableview;
 
     @FXML
@@ -102,4 +105,6 @@ public class appointmentsScreenController implements Initializable {
     public void updateButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/updateAppointment.fxml", "Update Appointments");
     }
+
+    public void deleteButtonOnAction(ActionEvent event) {}
 }

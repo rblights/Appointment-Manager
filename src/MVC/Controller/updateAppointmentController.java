@@ -4,7 +4,6 @@ import Utilities.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -33,13 +32,13 @@ public class updateAppointmentController {
     private TextField customerIDTextfield;
 
     @FXML
-    private TextField userIDTextField;
+    private TextField userIDTextfield;
 
     @FXML
-    private DatePicker startDatePicker;
+    private TextField startTextfield;
 
     @FXML
-    private DatePicker endStartPicker;
+    private TextField endTextfield;
 
     @FXML
     private Button updateButton;
@@ -47,16 +46,18 @@ public class updateAppointmentController {
     @FXML
     private Button cancelButton;
 
-    public void addButtonOnAction(ActionEvent event) {
+    public void addButtonOnAction(ActionEvent event) throws IOException {
 
+        SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }
 
-    public void updateButtonOnAction(ActionEvent event) {
+    public void updateButtonOnAction(ActionEvent event) throws IOException {
 
+        SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }
 
     public void cancelButtonOnAction(ActionEvent event) throws IOException {
-        SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");
+        SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }
 
 }
