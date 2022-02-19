@@ -1,8 +1,11 @@
 package MVC.Model;
 
+import java.time.ZoneId;
+
 public class User {
     private static String currentUser;
     private static int currentUserID;
+    private static ZoneId currentUserZoneID;
     private int user_ID;
     private String user_Name;
     private String password;
@@ -28,6 +31,14 @@ public class User {
 
     public static void setCurrentUserID(int currentUserID) {
         User.currentUserID = currentUserID;
+    }
+
+    public static ZoneId getCurrentUserZoneID() {
+        return currentUserZoneID;
+    }
+
+    public static void setCurrentUserZoneID(ZoneId currentUserZoneID) {
+        User.currentUserZoneID = currentUserZoneID;
     }
 
     public int getUser_ID() {

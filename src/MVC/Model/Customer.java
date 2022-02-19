@@ -7,7 +7,7 @@ public class Customer {
     private String address;
     private String postal_Code;
     private String phone;
-    private int divisionID;
+    private int division_ID;
 
     public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, int divisionID) {
         this.customer_ID = customer_ID;
@@ -15,7 +15,7 @@ public class Customer {
         this.address = address;
         this.postal_Code = postal_Code;
         this.phone = phone;
-        this.divisionID = divisionID;
+        this.division_ID = divisionID;
     }
 
     public int getCustomer_ID() {
@@ -58,12 +58,12 @@ public class Customer {
         this.phone = phone;
     }
 
-    public int getDivisionID() {
-        return divisionID;
+    public int getDivision_ID() {
+        return division_ID;
     }
 
-    public void setDivisionID(int divisionID) {
-        this.divisionID = divisionID;
+    public void setDivision_ID(int divisionID) {
+        this.division_ID = division_ID;
     }
 
     public String toString() {

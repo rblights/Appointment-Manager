@@ -1,6 +1,6 @@
 package MVC.Model;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class Appointment {
 
@@ -9,15 +9,15 @@ public class Appointment {
     private String description;
     private String location;
     private String type;
-    private LocalDateTime start;
-    private LocalDateTime end;
+    private String start;
+    private String end;
     private int customer_ID;
     private int contact_ID;
     private int user_ID;
-    private String contactName;
 
-    public Appointment(int appointment_ID, String title, String description, String location, String type, LocalDateTime start,
-                       LocalDateTime end, int customer_ID, int contact_ID, int user_ID, String contactName) {
+    public Appointment(int appointment_ID, String title, String description, String location, String type, String start,
+                       String end, int customer_ID, int contact_ID, int user_ID) {
+
         setAppointment_ID(appointment_ID);
         setTitle(title);
         setDescription(description);
@@ -28,7 +28,6 @@ public class Appointment {
         setCustomer_ID(customer_ID);
         setContact_ID(contact_ID);
         setUser_ID(user_ID);
-        setContactName(contactName);
     }
 
     public int getAppointment_ID() {
@@ -71,19 +70,19 @@ public class Appointment {
         this.type = type;
     }
 
-    public LocalDateTime getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public LocalDateTime getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(LocalDateTime end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 
@@ -109,14 +108,6 @@ public class Appointment {
 
     public void setUser_ID(int user_ID) {
         this.user_ID = user_ID;
-    }
-
-    public String getContactName() {
-        return contactName;
-    }
-
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
     }
 
     public String toString(Appointment appointment) {

@@ -39,7 +39,7 @@ public class updateCustomerController implements Initializable {
         postalCodeTextfield.setText(selectedCustomer.getPostal_Code());
         phoneTextfield.setText(selectedCustomer.getPhone());
         for (Division division : divisionCombobox.getItems())
-            if (division.getDivision_ID() == selectedCustomer.getDivisionID()) {
+            if (division.getDivision_ID() == selectedCustomer.getDivision_ID()) {
                 divisionCombobox.setValue(division);
                 for (Country country : countryCombobox.getItems())
                     if (country.getCountry_ID() == division.getCountry_ID())
@@ -86,8 +86,12 @@ public class updateCustomerController implements Initializable {
             if (division == divisionCombobox.getSelectionModel().getSelectedItem())
                 updatedDivisionID = division.getDivision_ID();
 
-        DBcustomers.updateCustomer(Integer.parseInt(IDTextfield.getText()), nameTextfield.getText(), addressTextfield.getText(), postalCodeTextfield.getText(),
-                phoneTextfield.getText(), updatedDivisionID);
+        DBcustomers.updateCustomer(Integer.parseInt(IDTextfield.getText()),
+                                    nameTextfield.getText(),
+                                    addressTextfield.getText(),
+                                    postalCodeTextfield.getText(),
+                                    phoneTextfield.getText(),
+                                    updatedDivisionID);
 
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }

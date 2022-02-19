@@ -1,24 +1,21 @@
 package MVC.Controller;
 
 import DBaccess.DBappointments;
-import DBaccess.DBcustomers;
 import MVC.Model.Appointment;
-import MVC.Model.Contact;
 import Utilities.SceneSwitcher;
 import Utilities.Selector;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.ResourceBundle;
 
 public class appointmentsScreenController implements Initializable {
@@ -40,12 +37,12 @@ public class appointmentsScreenController implements Initializable {
         titleColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("title"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("description"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("location"));
+        contactColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("contact_ID"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("type"));
-        startColumn.setCellValueFactory(new PropertyValueFactory<Appointment, LocalDate>("start"));
+        startColumn.setCellValueFactory(new PropertyValueFactory<Appointment, ZonedDateTime>("start"));
         endColumn.setCellValueFactory(new PropertyValueFactory<Appointment, LocalDate>("end"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("customer_ID"));
         userColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("user_ID"));
-        contactColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contactName"));
 
 
     }
@@ -61,6 +58,15 @@ public class appointmentsScreenController implements Initializable {
 
     @FXML
     private Button deleteButton;
+
+    @FXML
+    private RadioButton weekRadioButton;
+
+    @FXML
+    private ToggleGroup sort;
+
+    @FXML
+    private RadioButton monthRadioButton;
 
     @FXML
     private TableView<Appointment> appointmentTableview;
@@ -81,7 +87,7 @@ public class appointmentsScreenController implements Initializable {
     private TableColumn<Appointment, String> typeColumn;
 
     @FXML
-    private TableColumn<Appointment, LocalDate> startColumn;
+    private TableColumn<Appointment, ZonedDateTime> startColumn;
 
     @FXML
     private TableColumn<Appointment, LocalDate> endColumn;
@@ -93,7 +99,7 @@ public class appointmentsScreenController implements Initializable {
     private TableColumn<Appointment, Integer> userColumn;
 
     @FXML
-    private TableColumn<Contact, String> contactColumn;
+    private TableColumn<Appointment, Integer> contactColumn;
 
     public void customerViewButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");

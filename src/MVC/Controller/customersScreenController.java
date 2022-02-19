@@ -1,7 +1,9 @@
 package MVC.Controller;
 
 import DBaccess.DBcustomers;
+import DBaccess.DBdivisions;
 import MVC.Model.Customer;
+import MVC.Model.Division;
 import Utilities.SceneSwitcher;
 import Utilities.Selector;
 import javafx.collections.ObservableList;
@@ -23,9 +25,7 @@ public class customersScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ObservableList<Customer> customers;
-
-        customers = DBcustomers.getAllCustomers();
+        ObservableList<Customer> customers = DBcustomers.getAllCustomers();
         customerTableview.getItems().addAll(customers);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("customer_ID"));
@@ -33,7 +33,7 @@ public class customersScreenController implements Initializable {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("address"));
         postalColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("postal_Code"));
-        divisionColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("divisionName"));
+        divisionColumn.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("division_ID"));
 
     }
 
@@ -71,7 +71,7 @@ public class customersScreenController implements Initializable {
     private TableColumn<Customer, String> postalColumn;
 
     @FXML
-    private TableColumn<Customer, String> divisionColumn;
+    private TableColumn<Customer, Integer> divisionColumn;
 
     public void appointmentViewButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");

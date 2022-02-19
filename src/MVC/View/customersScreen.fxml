@@ -37,10 +37,10 @@
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="phoneColumn" prefWidth="75.0" text="Phone" />
-            <TableColumn fx:id="addressColumn" prefWidth="137.0" text="Address" />
-            <TableColumn fx:id="postalColumn" prefWidth="87.0" text="Postal Code" />
-            <TableColumn fx:id="divisionColumn" prefWidth="130.0" text="Division" />
+            <TableColumn fx:id="phoneColumn" prefWidth="99.0" text="Phone" />
+            <TableColumn fx:id="addressColumn" prefWidth="140.0" text="Address" />
+            <TableColumn fx:id="postalColumn" prefWidth="112.0" text="Postal Code" />
+            <TableColumn fx:id="divisionColumn" prefWidth="78.0" text="Division ID" />
         </columns>
          <BorderPane.margin>
             <Insets left="10.0" right="10.0" />

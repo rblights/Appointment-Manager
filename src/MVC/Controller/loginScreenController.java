@@ -5,6 +5,7 @@ import Utilities.JDBC;
 import Utilities.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -12,12 +13,25 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.ZoneId;
+import java.util.ResourceBundle;
+import java.util.TimeZone;
 
-public class loginScreenController {
+public class loginScreenController implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //TimeZone.setDefault(TimeZone.getTimeZone("Europe/Sofia"));
+        User.setCurrentUserZoneID(ZoneId.of(TimeZone.getDefault().getID()));
+        zoneIDLabel.setText(User.getCurrentUserZoneID().toString());
+
+    }
 
     @FXML
     private TextField usernameTextfield;
@@ -32,7 +46,7 @@ public class loginScreenController {
     private Button exitButton;
 
     @FXML
-    private Label languageLabel;
+    private Label zoneIDLabel;
 
     @FXML
     private Label loginLabel;
@@ -74,6 +88,5 @@ public class loginScreenController {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
-
 
 }

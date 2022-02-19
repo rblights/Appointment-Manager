@@ -3,8 +3,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -28,21 +30,27 @@
             <Button fx:id="updateButton" layoutX="469.0" layoutY="13.0" mnemonicParsing="false" onAction="#updateButtonOnAction" style="-fx-background-color: #154c79;" text="Update" textFill="WHITE" />
             <Button fx:id="addButton" layoutX="420.0" layoutY="13.0" mnemonicParsing="false" onAction="#addButtonOnAction" style="-fx-background-color: #154c79;" text="Add" textFill="WHITE" />
             <Button fx:id="deleteButton" layoutX="534.0" layoutY="13.0" mnemonicParsing="false" onAction="#deleteButtonOnAction" style="-fx-background-color: #154c79;" text="Delete" textFill="WHITE" />
+            <RadioButton fx:id="weekRadioButton" layoutX="230.0" layoutY="20.0" mnemonicParsing="false" text="Week">
+               <toggleGroup>
+                  <ToggleGroup fx:id="sort" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="monthRadioButton" layoutX="313.0" layoutY="20.0" mnemonicParsing="false" text="Month" toggleGroup="$sort" />
          </children>
       </AnchorPane>
    </bottom>
    <center>
       <TableView fx:id="appointmentTableview" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Title" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="Description" />
+          <TableColumn fx:id="idColumn" prefWidth="56.0" text="ID" />
+          <TableColumn fx:id="titleColumn" prefWidth="77.0" text="Title" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="92.0" text="Description" />
             <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
-            <TableColumn fx:id="contactColumn" prefWidth="75.0" text="Contact" />
-            <TableColumn fx:id="typeColumn" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="startColumn" prefWidth="75.0" text="Start" />
-            <TableColumn fx:id="endColumn" prefWidth="75.0" text="End" />
-            <TableColumn fx:id="customerColumn" prefWidth="75.0" text="Customer" />
+            <TableColumn fx:id="contactColumn" prefWidth="49.0" text="Contact" />
+            <TableColumn fx:id="typeColumn" prefWidth="101.0" text="Type" />
+            <TableColumn fx:id="startColumn" prefWidth="110.0" text="Start" />
+            <TableColumn fx:id="endColumn" minWidth="5.0" prefWidth="110.0" text="End" />
+            <TableColumn fx:id="customerColumn" minWidth="0.0" prefWidth="100.0" text="Customer" />
             <TableColumn fx:id="userColumn" prefWidth="75.0" text="User" />
         </columns>
          <BorderPane.margin>

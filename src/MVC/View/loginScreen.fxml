@@ -40,8 +40,8 @@
             <PasswordField fx:id="passwordTextfield" alignment="CENTER" layoutX="99.0" layoutY="200.0" promptText="Password" />
             <Button fx:id="loginButton" alignment="CENTER" layoutX="98.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="22.0" prefWidth="146.0" style="-fx-background-color: #154c79;" text="Login" textFill="WHITE" />
             <Button fx:id="exitButton" alignment="CENTER" layoutX="101.0" layoutY="316.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="22.0" prefWidth="146.0" style="-fx-background-color: White;" text="Exit" textFill="#154c79" />
-            <Label fx:id="languageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="378.0" prefHeight="16.0" prefWidth="162.0" />
             <Label fx:id="loginLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="94.0" prefHeight="17.0" prefWidth="221.0" />
+            <Label fx:id="zoneIDLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="378.0" prefHeight="17.0" prefWidth="87.0" />
          </children>
       </AnchorPane>
    </right>

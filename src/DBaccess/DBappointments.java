@@ -2,6 +2,7 @@ package DBaccess;
 
 import MVC.Model.Appointment;
 import MVC.Model.User;
+import Utilities.DTFormatter;
 import Utilities.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 public class DBappointments {
 
@@ -19,8 +21,7 @@ public class DBappointments {
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT Appointment_ID, Title, Description, Location, Type, Start, End, Customer_ID, User_ID, " +
-                    "appointments.Contact_ID, contacts.Contact_Name FROM appointments, contacts WHERE appointments.Contact_ID = contacts.Contact_ID";
+            String sql = "SELECT * FROM appointments";
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -36,11 +37,11 @@ public class DBappointments {
                 int customerID = rs.getInt("Customer_ID");
                 int userID = rs.getInt("User_ID");
                 int contactID = rs.getInt("Contact_ID");
-                String contactName = rs.getString("Contact_Name");
 
-                Appointment appointment = new Appointment(appointmentID, appointmentTitle, appointmentDescription,
-                        appointmentLocation, appointmentType, appointmentStart.toLocalDateTime(), appointmentEnd.toLocalDateTime(),
-                        customerID, userID, contactID, contactName);
+                Appointment appointment = new Appointment(appointmentID, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType,
+                        DTFormatter.format.format((appointmentStart.toLocalDateTime().atZone(ZoneId.of("UTC")).withZoneSameInstant(User.getCurrentUserZoneID())).toLocalDateTime()),
+                        DTFormatter.format.format((appointmentEnd.toLocalDateTime().atZone(ZoneId.of("UTC")).withZoneSameInstant(User.getCurrentUserZoneID())).toLocalDateTime()),
+                        customerID, userID, contactID);
 
                 appointmentList.add(appointment);
             }
@@ -50,8 +51,8 @@ public class DBappointments {
         return appointmentList;
     }
 
-    public static void insertAppointment(String Title, String Description, String Location, String Type, LocalDateTime Start,
-                                      LocalDateTime End, int Customer_ID, int Contact_ID) throws SQLException {
+    public static void insertAppointment(String Title, String Description, String Location, String Type, ZonedDateTime Start,
+                                      ZonedDateTime End, int Customer_ID, int Contact_ID) throws SQLException {
 
         try {
 
@@ -63,8 +64,8 @@ public class DBappointments {
             ps.setString(2, Description);
             ps.setString(3, Location);
             ps.setString(4, Type);
-            ps.setTimestamp(5, Timestamp.valueOf(Start));
-            ps.setTimestamp(6, Timestamp.valueOf(End));
+            ps.setTimestamp(5, Timestamp.valueOf(Start.toLocalDateTime()));
+            ps.setTimestamp(6, Timestamp.valueOf(End.toLocalDateTime()));
             ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()) );
             ps.setString(8, User.getCurrentUser());
             ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
@@ -80,13 +81,13 @@ public class DBappointments {
         }
     }
 
-    public static void updateAppointment (int appointmentID,String Title, String Description, String Location, String Type, Date Start,
-                                          Date End, String Last_Update, int Customer_ID, int User_ID,String Last_Updated_By) {
+    public static void updateAppointment (int appointmentID,String Title, String Description, String Location, String Type, ZonedDateTime Start,
+                                          ZonedDateTime End, int Customer_ID, int User_ID, int Contact_ID) {
 
         try {
 
             String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, " +
-                    "Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID WHERE Appointment_ID = ?";
+                    "Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
@@ -94,13 +95,14 @@ public class DBappointments {
             ps.setString(2, Description);
             ps.setString(3, Location);
             ps.setString(4, Type);
-            ps.setDate(5, (java.sql.Date) Start);
-            ps.setDate(6, (java.sql.Date) End);
+            ps.setTimestamp(5, Timestamp.valueOf(Start.toLocalDateTime()));
+            ps.setTimestamp(6, Timestamp.valueOf(End.toLocalDateTime()));
             ps.setString(7, String.valueOf(LocalDateTime.now()));
-            ps.setString(8, Last_Updated_By);
+            ps.setString(8, User.getCurrentUser());
             ps.setInt(9, Customer_ID);
             ps.setInt(10, User_ID);
-            ps.setInt(11, appointmentID);
+            ps.setInt(11, Contact_ID);
+            ps.setInt(12, appointmentID);
 
 
 

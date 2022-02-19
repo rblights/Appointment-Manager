@@ -10,12 +10,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 public class newAppointmentController implements Initializable {
@@ -29,9 +32,16 @@ public class newAppointmentController implements Initializable {
         ObservableList<Customer> customers = DBcustomers.getAllCustomers();
         customerIDCombobox.setItems(customers);
 
-        startTextfield.setPromptText(DTFormatter.format.format(LocalDateTime.now().plusHours(1)));
-        endTextfield.setPromptText(DTFormatter.format.format(LocalDateTime.now().plusHours(2)));
         userIDTextfield.setText(Integer.toString(User.getCurrentUserID()));
+
+        LocalTime localTimeStart = LocalTime.of(8, 0);
+        LocalTime localTimeEnd = LocalTime.of(22,0);
+        while (localTimeStart.isBefore(localTimeEnd.plusSeconds(1))) {
+            startCombobox.getItems().add(localTimeStart);
+            endCombobox.getItems().add(localTimeStart);
+            localTimeStart = localTimeStart.plusMinutes(15);
+
+        }
     }
 
     @FXML
@@ -59,10 +69,16 @@ public class newAppointmentController implements Initializable {
     private TextField userIDTextfield;
 
     @FXML
-    private TextField startTextfield;
+    private DatePicker startDatepicker;
 
     @FXML
-    private TextField endTextfield;
+    private DatePicker endDatepicker;
+
+    @FXML
+    private ComboBox<LocalTime> startCombobox;
+
+    @FXML
+    private ComboBox<LocalTime> endCombobox;
 
     @FXML
     private Button addButton;
@@ -84,8 +100,8 @@ public class newAppointmentController implements Initializable {
                                          descriptionTextfield.getText(),
                                          locationTextfield.getText(),
                                          typeTextfield.getText(),
-                                         LocalDateTime.parse(startTextfield.getText(), DTFormatter.format),
-                                         LocalDateTime.parse(endTextfield.getText(), DTFormatter.format),
+                                         LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
+                                         LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
                                          Integer.parseInt(String.valueOf(customerIDCombobox.getValue())),
                                          chosenContactID);
 
