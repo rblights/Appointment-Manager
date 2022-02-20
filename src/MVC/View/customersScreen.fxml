@@ -28,7 +28,7 @@
             <Button fx:id="updateButton" layoutX="468.0" layoutY="13.0" mnemonicParsing="false" onAction="#updateButtonOnAction" style="-fx-background-color: #154c79;" text="Update" textFill="WHITE" />
             <Button fx:id="addButton" layoutX="416.0" layoutY="13.0" mnemonicParsing="false" onAction="#addButtonOnAction" style="-fx-background-color: #154c79;" text="Add" textFill="WHITE" />
             <Button fx:id="deleteButton" layoutX="534.0" layoutY="13.0" mnemonicParsing="false" onAction="#deleteButtonOnAction" style="-fx-background-color: #154c79;" text="Delete" textFill="WHITE" />
-            <Button fx:id="reportsButton" layoutX="274.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: #154c79;" text="Reports" textFill="WHITE" />
+            <Button fx:id="reportsButton" layoutX="274.0" layoutY="13.0" mnemonicParsing="false" onAction="#reportsButtonOnAction" style="-fx-background-color: #154c79;" text="Reports" textFill="WHITE" />
          </children>
       </AnchorPane>
    </bottom>

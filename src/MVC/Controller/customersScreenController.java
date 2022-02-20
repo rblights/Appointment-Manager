@@ -2,12 +2,14 @@ package MVC.Controller;
 
 import DBaccess.DBcustomers;
 import MVC.Model.Customer;
+import Utilities.Languages.RBundle;
 import Utilities.SceneSwitcher;
 import Utilities.Selector;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,6 +20,7 @@ import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class customersScreenController implements Initializable {
@@ -100,6 +103,15 @@ public class customersScreenController implements Initializable {
     public void deleteButtonOnAction(ActionEvent event) throws SQLException {
         DBcustomers.deleteCustomer(customerTableview.getSelectionModel().getSelectedItem());
         customerTableview.setItems(DBcustomers.getAllCustomers());
+        if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("fr")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(RBundle.getrBundle().getString("customerDeleted"));
+            alert.showAndWait();
+        }
+    }
+
+    public void reportsButtonOnAction(ActionEvent event) throws IOException {
+        SceneSwitcher.switchScene(event, "../MVC/View/reportsScreen.fxml", "Reports");
     }
 
 }

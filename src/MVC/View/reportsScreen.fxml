@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.Controller.reportsScreenController">
+   <top>
+      <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #154c79;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="234.0" layoutY="6.0" text="Reports" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="customersButton" layoutX="264.0" layoutY="13.0" mnemonicParsing="false" onAction="#customersButtonOnAction" style="-fx-background-color: #154c79;" text="Customers" textFill="WHITE" />
+            <Button fx:id="contactButton" layoutX="460.0" layoutY="13.0" mnemonicParsing="false" onAction="#contactButtonOnAction" style="-fx-background-color: #154c79;" text="Contact Schedule" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Type" />
+                  <Label text="# of Appointments" GridPane.columnIndex="1" />
+                  <Label text="Planning Session" GridPane.rowIndex="1" />
+                  <Label text="De-Briefing" GridPane.rowIndex="2" />
+                  <Label fx:id="planningLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="debriefingLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <GridPane layoutY="146.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="49.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="151.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Month" />
+            <Label text="# of Appointments" GridPane.columnIndex="1" />
+            <Label text="Jan -" GridPane.rowIndex="1" />
+            <Label text="Feb -" GridPane.rowIndex="2" />
+            <Label text="Apr -" GridPane.rowIndex="4" />
+            <Label text="Mar -" GridPane.rowIndex="3" />
+            <Label text="May - " GridPane.rowIndex="5" />
+            <Label text="Jun -" GridPane.rowIndex="6" />
+            <Label text="Jul -" GridPane.rowIndex="7" />
+            <Label text="Aug -" GridPane.rowIndex="8" />
+            <Label text="Sep -" GridPane.rowIndex="9" />
+            <Label text="Oct -" GridPane.rowIndex="10" />
+            <Label text="Nov -" GridPane.rowIndex="11" />
+            <Label text="Dec -" GridPane.rowIndex="12" />
+            <Label fx:id="janLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="febLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="marLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="aprLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="mayLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="junLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="julLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="augLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label fx:id="sepLabel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="octLabel" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label fx:id="novLabel" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Label fx:id="decLabel" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+         </children>
+      </GridPane>
+   </left>
+   <right>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Country" />
+            <Label text="# of Appointments" GridPane.columnIndex="1" />
+            <Label text="U.S." GridPane.rowIndex="1" />
+            <Label text="Canada" GridPane.rowIndex="2" />
+            <Label text="U.K." GridPane.rowIndex="3" />
+            <Label fx:id="usLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="canLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="ukLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+   </right>
+</BorderPane>

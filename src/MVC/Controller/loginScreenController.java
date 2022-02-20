@@ -1,8 +1,13 @@
 package MVC.Controller;
 
 import MVC.Model.User;
+import Utilities.ActivityLog;
+import Utilities.DTFormatter;
 import Utilities.JDBC;
+import Utilities.Languages.RBundle;
 import Utilities.SceneSwitcher;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,29 +20,61 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class loginScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Locale english = Locale.US;
-        Locale french = Locale.FRENCH;
+        ActivityLog.createLog();
 
-        ResourceBundle rb = ResourceBundle.getBundle("../../Utilities/Language/Nat", Locale.getDefault());
+        /*Logger logger = Logger.getLogger("login_activity.txt");
 
-        languageCombbobox.getItems().add("English");
-        languageCombbobox.getItems().add("Français");
+        try {
+            FileHandler fileHandler = new FileHandler("login_activity.txt", true);
+            SimpleFormatter simpleFormatter = new SimpleFormatter();
+            fileHandler.setFormatter(simpleFormatter);
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+
+        //Locale.setDefault(Locale.FRANCE);
+
+        ObservableList<String> languages = FXCollections.observableArrayList("English", "Français");
+        languageCombobox.setItems(languages);
+
+        if (Locale.getDefault() == Locale.FRANCE)
+            languageCombobox.setValue("Français");
+        else
+            languageCombobox.setValue("English");
 
         //TimeZone.setDefault(TimeZone.getTimeZone("Europe/Sofia"));
         User.setCurrentUserZoneID(ZoneId.of(TimeZone.getDefault().getID()));
         zoneIDLabel.setText(User.getCurrentUserZoneID().toString());
 
+        if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("fr")) {
+            titleLabel.setText(RBundle.getrBundle().getString("appointmentManager"));
+            usernameTextfield.setPromptText(RBundle.getrBundle().getString("username"));
+            passwordTextfield.setPromptText(RBundle.getrBundle().getString("password"));
+            loginButton.setText(RBundle.getrBundle().getString("login"));
+            exitButton.setText(RBundle.getrBundle().getString("exit"));
+
+        }
+
     }
+
+    @FXML
+    private Label titleLabel;
 
     @FXML
     private TextField usernameTextfield;
@@ -55,18 +92,43 @@ public class loginScreenController implements Initializable {
     private Label zoneIDLabel;
 
     @FXML
-    private Label loginLabel;
-
-    @FXML
-    private ComboBox<String> languageCombbobox;
+    private ComboBox<String> languageCombobox;
 
     public void languageComboboxOnAction(ActionEvent event) {
+
+        switch (languageCombobox.getValue()) {
+            case "English":
+                Locale.setDefault(Locale.US);
+                titleLabel.setText(RBundle.getrBundle().getString("appointmentManager"));
+                usernameTextfield.setPromptText(RBundle.getrBundle().getString("username"));
+                passwordTextfield.setPromptText(RBundle.getrBundle().getString("password"));
+                loginButton.setText(RBundle.getrBundle().getString("login"));
+                exitButton.setText(RBundle.getrBundle().getString("exit"));
+                break;
+            case "Français":
+                Locale.setDefault(Locale.FRANCE);
+                titleLabel.setText(RBundle.getrBundle().getString("appointmentManager"));
+                usernameTextfield.setPromptText(RBundle.getrBundle().getString("username"));
+                passwordTextfield.setPromptText(RBundle.getrBundle().getString("password"));
+                loginButton.setText(RBundle.getrBundle().getString("login"));
+                exitButton.setText(RBundle.getrBundle().getString("exit"));
+                break;
+        }
+
 
     }
 
     public void loginButtonOnAction(ActionEvent event) throws SQLException {
+
         if (usernameTextfield.getText().isBlank() || passwordTextfield.getText().isBlank()) {
-            loginLabel.setText("Username & Password cannot be blank");
+            if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("fr")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(RBundle.getrBundle().getString("error"));
+                alert.setContentText(RBundle.getrBundle().getString("blankNamePW"));
+                alert.showAndWait();
+            }
+            ActivityLog.getLogger().info(ActivityLog.getCurrentTime() + " FAILED - Username: " + usernameTextfield.getText() + " Password: " + passwordTextfield.getText());
+
         } else {
 
             Connection connect = JDBC.getConnection();
@@ -82,11 +144,15 @@ public class loginScreenController implements Initializable {
                     while (rs.next()) {
                         User.setCurrentUser(rs.getString("User_Name"));
                         User.setCurrentUserID(rs.getInt("User_ID"));
+                        ActivityLog.getLogger().info(ActivityLog.getCurrentTime() + " SUCCESS - Username: " + usernameTextfield.getText() + " Password: " + passwordTextfield.getText());
                     }
-                    loginLabel.setText("Logging in...");
                     SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");
                 } else {
-                    loginLabel.setText("Match Not Found");
+                    ActivityLog.getLogger().info(ActivityLog.getCurrentTime() + " FAILED - Username: " + usernameTextfield.getText() + " Password: " + passwordTextfield.getText());
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle(RBundle.getrBundle().getString("error"));
+                    alert.setContentText(RBundle.getrBundle().getString("noMatch"));
+                    alert.showAndWait();
                 }
 
                 usernameTextfield.clear();
