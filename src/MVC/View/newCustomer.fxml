@@ -44,7 +44,7 @@
                   <TextField fx:id="addressTextfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="postalCodeTextfield" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="phoneTextfield" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="countryCombobox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="countryCombobox" onAction="#countryComboboxOnAction" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ComboBox fx:id="divisionCombobox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
                <padding>

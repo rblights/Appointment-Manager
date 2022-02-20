@@ -20,8 +20,7 @@ public class DBcustomers {
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, customers.Division_ID, " +
-                    "first_level_divisions.Division FROM customers, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID";
+            String sql = "SELECT * FROM customers";
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 

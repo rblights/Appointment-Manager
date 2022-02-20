@@ -1,7 +1,5 @@
 package MVC.Model;
 
-import java.time.ZonedDateTime;
-
 public class Appointment {
 
     private int appointment_ID;

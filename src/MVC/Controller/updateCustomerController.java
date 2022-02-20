@@ -8,6 +8,7 @@ import MVC.Model.Customer;
 import MVC.Model.Division;
 import Utilities.SceneSwitcher;
 import Utilities.Selector;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,9 +29,6 @@ public class updateCustomerController implements Initializable {
         ObservableList<Country> countries = DBcountries.getAllCountries();
         countryCombobox.setItems(countries);
 
-        ObservableList<Division> divisions = DBdivisions.getAllDivisions();
-        divisionCombobox.setItems(divisions);
-
         Customer selectedCustomer = Selector.getSelectedCustomer();
 
         IDTextfield.setText(Integer.toString(selectedCustomer.getCustomer_ID()));
@@ -38,10 +36,10 @@ public class updateCustomerController implements Initializable {
         addressTextfield.setText(selectedCustomer.getAddress());
         postalCodeTextfield.setText(selectedCustomer.getPostal_Code());
         phoneTextfield.setText(selectedCustomer.getPhone());
-        for (Division division : divisionCombobox.getItems())
+        for (Division division : DBdivisions.getAllDivisions())
             if (division.getDivision_ID() == selectedCustomer.getDivision_ID()) {
                 divisionCombobox.setValue(division);
-                for (Country country : countryCombobox.getItems())
+                for (Country country : DBcountries.getAllCountries())
                     if (country.getCountry_ID() == division.getCountry_ID())
                     countryCombobox.setValue(country);
             }
@@ -73,6 +71,17 @@ public class updateCustomerController implements Initializable {
 
     @FXML
     private Button cancelCustomerButton;
+
+    public void countryComboboxOnAction(ActionEvent event) {
+        ObservableList<Division> filteredDivisions = FXCollections.observableArrayList();
+        for (Division division : DBdivisions.getAllDivisions()) {
+            if (division.getCountry_ID() == countryCombobox.getSelectionModel().getSelectedItem().getCountry_ID())
+                filteredDivisions.add(division);
+        }
+        divisionCombobox.valueProperty().set(null);
+        divisionCombobox.getItems().clear();
+        divisionCombobox.getItems().addAll(filteredDivisions);
+    }
 
     public void cancelButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");

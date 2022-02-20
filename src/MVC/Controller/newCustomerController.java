@@ -6,6 +6,7 @@ import DBaccess.DBdivisions;
 import MVC.Model.Country;
 import MVC.Model.Division;
 import Utilities.SceneSwitcher;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,9 +27,6 @@ public class newCustomerController<Divison> implements Initializable {
 
         ObservableList<Country> countries = DBcountries.getAllCountries();
         countryCombobox.setItems(countries);
-
-        ObservableList<Division> divisions = DBdivisions.getAllDivisions();
-        divisionCombobox.setItems(divisions);
 
     }
 
@@ -59,20 +57,22 @@ public class newCustomerController<Divison> implements Initializable {
     @FXML
     private Button cancelCustomerButton;
 
+    public void countryComboboxOnAction(ActionEvent event) {
+        ObservableList<Division> filteredDivisions = FXCollections.observableArrayList();
+        for (Division division : DBdivisions.getAllDivisions()) {
+            if (division.getCountry_ID() == countryCombobox.getSelectionModel().getSelectedItem().getCountry_ID())
+                filteredDivisions.add(division);
+        }
+        divisionCombobox.valueProperty().set(null);
+        divisionCombobox.getSelectionModel().clearSelection();
+        divisionCombobox.getItems().addAll(filteredDivisions);
+    }
+
 
     public void addCustomerButtonOnAction(ActionEvent event) throws SQLException, IOException {
-        DBcustomers.insertCustomer(nameTextfield.getText(),
-                                   addressTextfield.getText(),
-                                   postalCodeTextfield.getText(),
-                                   phoneTextfield.getText(),
-                                   divisionCombobox.getValue());
 
-        nameTextfield.clear();
-        addressTextfield.clear();
-        postalCodeTextfield.clear();
-        phoneTextfield.clear();
-        countryCombobox.getSelectionModel().clearSelection();
-        divisionCombobox.getSelectionModel().clearSelection();
+        DBcustomers.insertCustomer(nameTextfield.getText(), addressTextfield.getText(), postalCodeTextfield.getText(),
+                                    phoneTextfield.getText(), divisionCombobox.getValue());
 
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
 

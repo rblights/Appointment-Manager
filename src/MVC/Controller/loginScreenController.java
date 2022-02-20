@@ -6,10 +6,7 @@ import Utilities.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.ZoneId;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
@@ -26,6 +24,14 @@ public class loginScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Locale english = Locale.US;
+        Locale french = Locale.FRENCH;
+
+        ResourceBundle rb = ResourceBundle.getBundle("../../Utilities/Language/Nat", Locale.getDefault());
+
+        languageCombbobox.getItems().add("English");
+        languageCombbobox.getItems().add("Français");
 
         //TimeZone.setDefault(TimeZone.getTimeZone("Europe/Sofia"));
         User.setCurrentUserZoneID(ZoneId.of(TimeZone.getDefault().getID()));
@@ -51,13 +57,21 @@ public class loginScreenController implements Initializable {
     @FXML
     private Label loginLabel;
 
+    @FXML
+    private ComboBox<String> languageCombbobox;
+
+    public void languageComboboxOnAction(ActionEvent event) {
+
+    }
+
     public void loginButtonOnAction(ActionEvent event) throws SQLException {
         if (usernameTextfield.getText().isBlank() || passwordTextfield.getText().isBlank()) {
             loginLabel.setText("Username & Password cannot be blank");
         } else {
 
             Connection connect = JDBC.getConnection();
-            String sql = "SELECT User_Name, User_ID FROM users WHERE User_Name = '" + usernameTextfield.getText() + "' AND Password = '" + passwordTextfield.getText() + "'";
+            String sql = "SELECT User_Name, User_ID FROM users WHERE User_Name = '" + usernameTextfield.getText() +
+                        "' AND Password = '" + passwordTextfield.getText() + "'";
 
             try {
 
@@ -88,5 +102,4 @@ public class loginScreenController implements Initializable {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
-
 }

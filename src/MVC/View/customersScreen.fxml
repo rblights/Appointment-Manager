@@ -33,7 +33,7 @@
       </AnchorPane>
    </bottom>
    <center>
-      <TableView fx:id="customerTableview" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="customerTableview" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />

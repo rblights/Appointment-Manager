@@ -1,9 +1,7 @@
 package MVC.Controller;
 
 import DBaccess.DBcustomers;
-import DBaccess.DBdivisions;
 import MVC.Model.Customer;
-import MVC.Model.Division;
 import Utilities.SceneSwitcher;
 import Utilities.Selector;
 import javafx.collections.ObservableList;
@@ -14,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,11 +29,22 @@ public class customersScreenController implements Initializable {
         customerTableview.getItems().addAll(customers);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("customer_ID"));
+        idColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
         nameColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("customer_Name"));
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         phoneColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
+        phoneColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         addressColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("address"));
+        addressColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         postalColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("postal_Code"));
+        postalColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         divisionColumn.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("division_ID"));
+        divisionColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
     }
 

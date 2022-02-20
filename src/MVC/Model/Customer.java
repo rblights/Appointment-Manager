@@ -9,13 +9,13 @@ public class Customer {
     private String phone;
     private int division_ID;
 
-    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, int divisionID) {
-        this.customer_ID = customer_ID;
-        this.customer_Name = customer_Name;
-        this.address = address;
-        this.postal_Code = postal_Code;
-        this.phone = phone;
-        this.division_ID = divisionID;
+    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, int division_ID) {
+        setCustomer_ID(customer_ID);
+        setCustomer_Name(customer_Name);
+        setAddress(address);
+        setPostal_Code(postal_Code);
+        setPhone(phone);
+        setDivision_ID(division_ID);
     }
 
     public int getCustomer_ID() {
@@ -62,7 +62,7 @@ public class Customer {
         return division_ID;
     }
 
-    public void setDivision_ID(int divisionID) {
+    public void setDivision_ID(int division_ID) {
         this.division_ID = division_ID;
     }
 

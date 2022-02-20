@@ -81,8 +81,8 @@ public class DBappointments {
         }
     }
 
-    public static void updateAppointment (int appointmentID,String Title, String Description, String Location, String Type, ZonedDateTime Start,
-                                          ZonedDateTime End, int Customer_ID, int User_ID, int Contact_ID) {
+    public static void updateAppointment (int appointmentID,String Title, String Description, String Location, String Type,
+                                          ZonedDateTime Start, ZonedDateTime End, int Customer_ID, int User_ID, int Contact_ID) {
 
         try {
 

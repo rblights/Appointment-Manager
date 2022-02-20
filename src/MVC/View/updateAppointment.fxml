@@ -20,8 +20,8 @@
          <right>
             <GridPane alignment="CENTER" prefHeight="291.0" prefWidth="350.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="88.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="148.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="97.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="141.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="90.0" />
               </columnConstraints>
               <rowConstraints>
@@ -52,7 +52,7 @@
                   <Label text="Customer ID" GridPane.rowIndex="8" />
                   <Label text="User ID" GridPane.rowIndex="9" />
                   <TextField fx:id="typeTextfield" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="userIDTextfield" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="userIDTextfield" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <ComboBox fx:id="contactCombobox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ComboBox fx:id="customerIDCombobox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <DatePicker fx:id="startDatepicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />

@@ -10,12 +10,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.ResourceBundle;
 
 public class appointmentsScreenController implements Initializable {
@@ -34,15 +34,34 @@ public class appointmentsScreenController implements Initializable {
         }
 
         idColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("appointment_ID"));
+        idColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
         titleColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("title"));
+        titleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("description"));
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         locationColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("location"));
+        locationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         contactColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("contact_ID"));
+        contactColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
         typeColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("type"));
-        startColumn.setCellValueFactory(new PropertyValueFactory<Appointment, ZonedDateTime>("start"));
-        endColumn.setCellValueFactory(new PropertyValueFactory<Appointment, LocalDate>("end"));
+        typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        startColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("start"));
+        startColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        endColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("end"));
+        endColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         customerColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("customer_ID"));
+        customerColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
         userColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("user_ID"));
+        customerColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
 
     }
@@ -87,10 +106,10 @@ public class appointmentsScreenController implements Initializable {
     private TableColumn<Appointment, String> typeColumn;
 
     @FXML
-    private TableColumn<Appointment, ZonedDateTime> startColumn;
+    private TableColumn<Appointment, String> startColumn;
 
     @FXML
-    private TableColumn<Appointment, LocalDate> endColumn;
+    private TableColumn<Appointment, String> endColumn;
 
     @FXML
     private TableColumn<Appointment, Integer> customerColumn;
