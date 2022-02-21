@@ -2,15 +2,14 @@ package MVC.Controller;
 
 import DBaccess.*;
 import MVC.Model.*;
+import Utilities.DTFormatter;
+import Utilities.Languages.RBundle;
 import Utilities.SceneSwitcher;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class newAppointmentController implements Initializable {
 
@@ -95,16 +95,40 @@ public class newAppointmentController implements Initializable {
                 chosenContactID = contact.getContactID();
             }
         }
-        DBappointments.insertAppointment(titleTextfield.getText(),
-                                         descriptionTextfield.getText(),
-                                         locationTextfield.getText(),
-                                         typeTextfield.getText(),
-                                         LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
-                                         LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
-                                         Integer.parseInt(String.valueOf(customerIDCombobox.getValue())),
-                                         chosenContactID);
 
-        SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Customer View");
+        AtomicBoolean conflictFound = new AtomicBoolean(false);
+        ObservableList<Appointment> appointments = DBappointments.getAllAppointments();
+        appointments.forEach((appointment) -> {
+                    LocalDateTime oldStart = LocalDateTime.parse(appointment.getStart(), DTFormatter.format);
+                    LocalDateTime oldEnd = LocalDateTime.parse(appointment.getEnd(), DTFormatter.format);
+                    LocalDateTime newStart = LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue());
+                    LocalDateTime newEnd = LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue());
+
+                    if (customerIDCombobox.getValue().getCustomer_ID() == appointment.getCustomer_ID()) {
+                        if ((newStart.isAfter(oldStart) || newStart.isEqual(oldStart)) && (newStart.isBefore(oldEnd)))
+                            conflictFound.set(true);
+                        if ((newEnd.isAfter(oldStart)) && (newEnd.isBefore(oldEnd) || newEnd.isEqual(oldEnd)))
+                            conflictFound.set(true);
+                        if ((newStart.isBefore(oldStart) || newStart.isEqual(oldStart)) && (newEnd.isAfter(oldEnd) || newEnd.isEqual(oldEnd)))
+                            conflictFound.set(true);
+                    }
+                });
+        if (conflictFound.get()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(RBundle.getrBundle().getString("conflictFound"));
+            alert.showAndWait();
+        } else {
+            DBappointments.insertAppointment(titleTextfield.getText(),
+                    descriptionTextfield.getText(),
+                    locationTextfield.getText(),
+                    typeTextfield.getText(),
+                    LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
+                    LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
+                    Integer.parseInt(String.valueOf(customerIDCombobox.getValue())),
+                    chosenContactID);
+
+            SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Customer View");
+        }
     }
 
     public void cancelButtonOnAction(ActionEvent event) throws IOException {

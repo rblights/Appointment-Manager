@@ -2,13 +2,13 @@ package MVC.Controller;
 
 import MVC.Model.User;
 import Utilities.ActivityLog;
-import Utilities.DTFormatter;
 import Utilities.JDBC;
 import Utilities.Languages.RBundle;
 import Utilities.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -20,14 +20,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class loginScreenController implements Initializable {
 
@@ -35,18 +31,6 @@ public class loginScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         ActivityLog.createLog();
-
-        /*Logger logger = Logger.getLogger("login_activity.txt");
-
-        try {
-            FileHandler fileHandler = new FileHandler("login_activity.txt", true);
-            SimpleFormatter simpleFormatter = new SimpleFormatter();
-            fileHandler.setFormatter(simpleFormatter);
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
 
         //Locale.setDefault(Locale.FRANCE);
 
@@ -57,6 +41,9 @@ public class loginScreenController implements Initializable {
             languageCombobox.setValue("Français");
         else
             languageCombobox.setValue("English");
+
+        //languageCombobox.setOnAction(event);
+
 
         //TimeZone.setDefault(TimeZone.getTimeZone("Europe/Sofia"));
         User.setCurrentUserZoneID(ZoneId.of(TimeZone.getDefault().getID()));
@@ -94,6 +81,33 @@ public class loginScreenController implements Initializable {
     @FXML
     private ComboBox<String> languageCombobox;
 
+    /*EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            switch (languageCombobox.getValue()) {
+                case "English":
+                    Locale.setDefault(Locale.US);
+                    titleLabel.setText(RBundle.getrBundle().getString("appointmentManager"));
+                    usernameTextfield.setPromptText(RBundle.getrBundle().getString("username"));
+                    passwordTextfield.setPromptText(RBundle.getrBundle().getString("password"));
+                    loginButton.setText(RBundle.getrBundle().getString("login"));
+                    exitButton.setText(RBundle.getrBundle().getString("exit"));
+                    break;
+                case "Français":
+                    Locale.setDefault(Locale.FRANCE);
+                    titleLabel.setText(RBundle.getrBundle().getString("appointmentManager"));
+                    usernameTextfield.setPromptText(RBundle.getrBundle().getString("username"));
+                    passwordTextfield.setPromptText(RBundle.getrBundle().getString("password"));
+                    loginButton.setText(RBundle.getrBundle().getString("login"));
+                    exitButton.setText(RBundle.getrBundle().getString("exit"));
+                    break;
+            }
+
+        }
+    };*/
+
+
+
     public void languageComboboxOnAction(ActionEvent event) {
 
         switch (languageCombobox.getValue()) {
@@ -114,8 +128,6 @@ public class loginScreenController implements Initializable {
                 exitButton.setText(RBundle.getrBundle().getString("exit"));
                 break;
         }
-
-
     }
 
     public void loginButtonOnAction(ActionEvent event) throws SQLException {

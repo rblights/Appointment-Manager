@@ -30,12 +30,12 @@
             <Button fx:id="updateButton" layoutX="469.0" layoutY="13.0" mnemonicParsing="false" onAction="#updateButtonOnAction" style="-fx-background-color: #154c79;" text="Update" textFill="WHITE" />
             <Button fx:id="addButton" layoutX="420.0" layoutY="13.0" mnemonicParsing="false" onAction="#addButtonOnAction" style="-fx-background-color: #154c79;" text="Add" textFill="WHITE" />
             <Button fx:id="deleteButton" layoutX="534.0" layoutY="13.0" mnemonicParsing="false" onAction="#deleteButtonOnAction" style="-fx-background-color: #154c79;" text="Delete" textFill="WHITE" />
-            <RadioButton fx:id="weekRadioButton" layoutX="230.0" layoutY="20.0" mnemonicParsing="false" text="Week">
+            <RadioButton fx:id="weekRadioButton" layoutX="230.0" layoutY="20.0" mnemonicParsing="false" onAction="#radioButtonOnAction" text="Week">
                <toggleGroup>
                   <ToggleGroup fx:id="sort" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="monthRadioButton" layoutX="313.0" layoutY="20.0" mnemonicParsing="false" text="Month" toggleGroup="$sort" />
+            <RadioButton fx:id="monthRadioButton" layoutX="313.0" layoutY="20.0" mnemonicParsing="false" onAction="#radioButtonOnAction" text="Month" toggleGroup="$sort" />
          </children>
       </AnchorPane>
    </bottom>

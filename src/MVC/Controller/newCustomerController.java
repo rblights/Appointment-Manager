@@ -64,7 +64,7 @@ public class newCustomerController<Divison> implements Initializable {
                 filteredDivisions.add(division);
         }
         divisionCombobox.valueProperty().set(null);
-        divisionCombobox.getSelectionModel().clearSelection();
+        divisionCombobox.getItems().clear();
         divisionCombobox.getItems().addAll(filteredDivisions);
     }
 

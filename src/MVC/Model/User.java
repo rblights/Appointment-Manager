@@ -3,6 +3,7 @@ package MVC.Model;
 import java.time.ZoneId;
 
 public class User {
+    public static boolean firstLogin = true;
     private static String currentUser;
     private static int currentUserID;
     private static ZoneId currentUserZoneID;
@@ -16,6 +17,13 @@ public class User {
         setPassword(password);
     }
 
+    public static boolean isFirstLogin() {
+        return firstLogin;
+    }
+
+    public static void setFirstLogin(boolean firstLogin) {
+        User.firstLogin = firstLogin;
+    }
 
     public static String getCurrentUser() {
         return currentUser;

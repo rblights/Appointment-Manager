@@ -2,8 +2,12 @@ package MVC.Controller;
 
 import DBaccess.DBappointments;
 import MVC.Model.Appointment;
+import MVC.Model.User;
+import Utilities.DTFormatter;
+import Utilities.Languages.RBundle;
 import Utilities.SceneSwitcher;
 import Utilities.Selector;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +20,7 @@ import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class appointmentsScreenController implements Initializable {
@@ -23,7 +28,7 @@ public class appointmentsScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ObservableList<Appointment> appointments;
+        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
         try {
             appointments = DBappointments.getAllAppointments();
@@ -32,6 +37,27 @@ public class appointmentsScreenController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        boolean alertShown = false;
+        int upcomingAppointments = 0;
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        if (User.isFirstLogin()) {
+            for (Appointment appointment : appointments)
+                if (LocalDateTime.parse(appointment.getStart(), DTFormatter.format).isBefore(LocalDateTime.now().plusMinutes(15)) && LocalDateTime.parse(appointment.getStart(), DTFormatter.format).isAfter(LocalDateTime.now()) && alertShown == false) {
+                    upcomingAppointments++;
+                }
+            if (upcomingAppointments == 0)
+                alert.setContentText(RBundle.getrBundle().getString("noUpcomingAppointment"));
+            else
+                alert.setContentText(RBundle.getrBundle().getString("upcomingAppointment"));
+
+            alert.showAndWait();
+            alertShown = true;
+            User.firstLogin = false;
+        }
+
 
         idColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("appointment_ID"));
         idColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -134,7 +160,38 @@ public class appointmentsScreenController implements Initializable {
     }
 
     public void deleteButtonOnAction(ActionEvent event) throws SQLException {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(RBundle.getrBundle().getString("appointmentDeleted"));
+        alert.setContentText(Integer.toString(appointmentTableview.getSelectionModel().getSelectedItem().getAppointment_ID()) + " - " + appointmentTableview.getSelectionModel().getSelectedItem().getType());
+        alert.showAndWait();
         DBappointments.deleteAppointment(appointmentTableview.getSelectionModel().getSelectedItem());
         appointmentTableview.setItems(DBappointments.getAllAppointments());
+        weekRadioButton.setSelected(false);
+        monthRadioButton.setSelected(false);
+    }
+
+    public void radioButtonOnAction(ActionEvent event) throws SQLException {
+        if (monthRadioButton.isSelected()) {
+            ObservableList<Appointment> monthAppointments = FXCollections.observableArrayList();
+            for (Appointment appointment : DBappointments.getAllAppointments()) {
+                if (LocalDateTime.parse(appointment.getStart(), DTFormatter.format).getMonth() == LocalDateTime.now().getMonth())
+                    monthAppointments.add(appointment);
+            }
+            appointmentTableview.setItems(monthAppointments);
+            appointmentTableview.refresh();
+        }
+        if (weekRadioButton.isSelected()) {
+            ObservableList<Appointment> weekAppointments = FXCollections.observableArrayList();
+
+            for (Appointment appointment : DBappointments.getAllAppointments()) {
+
+                if (LocalDateTime.parse(appointment.getStart(), DTFormatter.format).isAfter(LocalDateTime.now()) && LocalDateTime.parse(appointment.getStart(), DTFormatter.format).isBefore(LocalDateTime.now().plusDays(7)))
+                    weekAppointments.add(appointment);
+            }
+            appointmentTableview.setItems(weekAppointments);
+            appointmentTableview.refresh();
+        }
+
     }
 }
