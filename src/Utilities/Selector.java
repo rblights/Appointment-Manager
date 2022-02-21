@@ -3,6 +3,7 @@ package Utilities;
 import MVC.Model.Appointment;
 import MVC.Model.Customer;
 
+/** Class that holds Static Appointment & Customer for selection. */
 public class Selector {
 
     public static Appointment selectedAppointment = null;

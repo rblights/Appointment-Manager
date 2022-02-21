@@ -154,23 +154,32 @@ public class appointmentsScreenController implements Initializable {
         SceneSwitcher.switchScene(event, "../MVC/View/newAppointment.fxml", "Add Appointments");
     }
 
+    /** Sets selected appointment and calls switchScene method to open the Update Appointment Screen.
+     * @param event */
     public void updateButtonOnAction(ActionEvent event) throws IOException {
         Selector.setSelectedAppointment(appointmentTableview.getSelectionModel().getSelectedItem());
         SceneSwitcher.switchScene(event, "../MVC/View/updateAppointment.fxml", "Update Appointments");
     }
 
+    /** Checks for a selected appointment, then deletes it and delivers a message.
+     * @param event */
     public void deleteButtonOnAction(ActionEvent event) throws SQLException {
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(RBundle.getrBundle().getString("appointmentDeleted"));
-        alert.setContentText(Integer.toString(appointmentTableview.getSelectionModel().getSelectedItem().getAppointment_ID()) + " - " + appointmentTableview.getSelectionModel().getSelectedItem().getType());
-        alert.showAndWait();
-        DBappointments.deleteAppointment(appointmentTableview.getSelectionModel().getSelectedItem());
-        appointmentTableview.setItems(DBappointments.getAllAppointments());
-        weekRadioButton.setSelected(false);
-        monthRadioButton.setSelected(false);
+        if (appointmentTableview.getSelectionModel().getSelectedItem() != null) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(RBundle.getrBundle().getString("appointmentDeleted"));
+            alert.setContentText(Integer.toString(appointmentTableview.getSelectionModel().getSelectedItem().getAppointment_ID()) + " - " + appointmentTableview.getSelectionModel().getSelectedItem().getType());
+            alert.showAndWait();
+            DBappointments.deleteAppointment(appointmentTableview.getSelectionModel().getSelectedItem());
+            appointmentTableview.setItems(DBappointments.getAllAppointments());
+            weekRadioButton.setSelected(false);
+            monthRadioButton.setSelected(false);
+        }
     }
 
+    /** Controls the Week/Month View toggle for upcoming week and current month.
+     * @param event */
     public void radioButtonOnAction(ActionEvent event) throws SQLException {
         if (monthRadioButton.isSelected()) {
             ObservableList<Appointment> monthAppointments = FXCollections.observableArrayList();

@@ -100,13 +100,17 @@ public class customersScreenController implements Initializable {
         SceneSwitcher.switchScene(event, "../MVC/View/updateCustomer.fxml", "Update Customer");
     }
 
+    /** Checks for selected customer, deletes them and delivers a message depending on language.
+     * @param event */
     public void deleteButtonOnAction(ActionEvent event) throws SQLException {
-        DBcustomers.deleteCustomer(customerTableview.getSelectionModel().getSelectedItem());
-        customerTableview.setItems(DBcustomers.getAllCustomers());
-        if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("fr")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(RBundle.getrBundle().getString("customerDeleted"));
-            alert.showAndWait();
+        if (customerTableview.getSelectionModel().getSelectedItem() != null) {
+            DBcustomers.deleteCustomer(customerTableview.getSelectionModel().getSelectedItem());
+            customerTableview.setItems(DBcustomers.getAllCustomers());
+            if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("fr")) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText(RBundle.getrBundle().getString("customerDeleted"));
+                alert.showAndWait();
+            }
         }
     }
 

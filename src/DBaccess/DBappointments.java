@@ -17,6 +17,8 @@ import java.time.ZonedDateTime;
 
 public class DBappointments {
 
+    /** Gets the DB connection to query DB and return list of appointments.
+     @return appointmentList*/
     public static ObservableList<Appointment> getAllAppointments() throws SQLException {
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
@@ -51,6 +53,15 @@ public class DBappointments {
         return appointmentList;
     }
 
+    /** Uses a PreparedStatement to INSERT a new appointment to the DB.
+     * @param Contact_ID
+     * @param Description
+     * @param Customer_ID
+     * @param End
+     * @param Location
+     * @param Start
+     * @param Title
+     * @param Type */
     public static void insertAppointment(String Title, String Description, String Location, String Type, ZonedDateTime Start,
                                       ZonedDateTime End, int Customer_ID, int Contact_ID) throws SQLException {
 
@@ -81,6 +92,17 @@ public class DBappointments {
         }
     }
 
+    /** Uses a PreparedStatement to UPDATE an appointment in the DB.
+     * @param Type
+     * @param Title
+     * @param Start
+     * @param Location
+     * @param End
+     * @param Customer_ID
+     * @param Description
+     * @param Contact_ID
+     * @param appointmentID
+     * @param User_ID */
     public static void updateAppointment (int appointmentID,String Title, String Description, String Location, String Type,
                                           ZonedDateTime Start, ZonedDateTime End, int Customer_ID, int User_ID, int Contact_ID) {
 
@@ -114,6 +136,8 @@ public class DBappointments {
 
     }
 
+    /** Deletes appointment from DB.
+     * @param appointment */
     public static void deleteAppointment(Appointment appointment) {
 
         try {

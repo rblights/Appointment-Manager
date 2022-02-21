@@ -40,6 +40,9 @@ public class reportsScreenController {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customers View");
     }
 
+    /** Generates Contact Schedule Report.
+     * Loops through contacts to append name to string with inner loop to append appointment info.
+     * @param event */
     public void contactButtonOnAction(ActionEvent event) throws SQLException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Contact Schedule");
@@ -65,6 +68,9 @@ public class reportsScreenController {
         alert.showAndWait();
     }
 
+    /** Generates User Schedule Report.
+     * Loops through users to append name to string with inner loop to append appointment info.
+     * @param event */
     public void userButtonOnAction(ActionEvent event) throws SQLException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("User Schedule");
@@ -90,6 +96,9 @@ public class reportsScreenController {
         alert.showAndWait();
     }
 
+    /** Generates Appointments By Month Report.
+     * Loops through months to append names to string with inner loop that increments a counter variable to track # of appointments per month.
+     * @param event */
     public void appointmentMonthButtonOnAction(ActionEvent event) throws SQLException {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -112,6 +121,9 @@ public class reportsScreenController {
         alert.showAndWait();
     }
 
+    /** Generates Appointments By Month Report.
+     * Loops through types to append names to string with inner loop that increments a counter variable to track # of appointments per type.
+     * @param event */
     public void appointmentTypeButtonOnAction(ActionEvent event) throws SQLException {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

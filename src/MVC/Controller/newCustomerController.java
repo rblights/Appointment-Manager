@@ -57,6 +57,8 @@ public class newCustomerController<Divison> implements Initializable {
     @FXML
     private Button cancelCustomerButton;
 
+    /** Filters the divisionComboBox by countryComboBox selection.
+     * @param event */
     public void countryComboboxOnAction(ActionEvent event) {
         ObservableList<Division> filteredDivisions = FXCollections.observableArrayList();
         for (Division division : DBdivisions.getAllDivisions()) {
@@ -69,6 +71,8 @@ public class newCustomerController<Divison> implements Initializable {
     }
 
 
+    /** Inserts new customer into the DB.
+     * @param event */
     public void addCustomerButtonOnAction(ActionEvent event) throws SQLException, IOException {
 
         DBcustomers.insertCustomer(nameTextfield.getText(), addressTextfield.getText(), postalCodeTextfield.getText(),

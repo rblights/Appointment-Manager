@@ -85,6 +85,9 @@ public class newAppointmentController implements Initializable {
     @FXML
     private Button cancelButton;
 
+    /** Determines contactID, checks for schedule conflicts, and adds appointment to the DB.
+     * Uses a lambda function to loop through each appointment to look for conflicts, triggers alert if conflictFound is true or adds appointment switches scene if false.
+     * @param event */
     public void addButtonOnAction(ActionEvent event) throws IOException, SQLException {
 
         String chosenContact = String.valueOf(contactCombobox.getValue());

@@ -7,11 +7,13 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/** Records login activity. */
 public class ActivityLog {
 
     private static Logger logger;
     private static String currentTime = DTFormatter.format.format(LocalDateTime.now().atZone(ZoneId.of("UTC")));
 
+    /** Creates login_activity.txt. */
     public static void createLog() {
         logger = Logger.getLogger("login_activity.txt");
 

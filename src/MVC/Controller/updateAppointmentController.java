@@ -113,6 +113,9 @@ public class updateAppointmentController implements Initializable {
     @FXML
     private Button cancelButton;
 
+    /** Checks for schedule conflicts, and updates appointment to the DB.
+     * Uses a lambda function to loop through each appointment to look for conflicts, triggers alert if conflictFound is true or adds appointment switches scene if false.
+     * @param event */
     public void updateButtonOnAction(ActionEvent event) throws IOException, SQLException {
 
         AtomicBoolean conflictFound = new AtomicBoolean(false);

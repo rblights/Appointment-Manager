@@ -8,10 +8,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
+/** Class with method for switching scenes. */
 public class SceneSwitcher {
 
+    /** Method to switch scenes.
+     * @param event
+     * @param title
+     * @param view */
     public static void switchScene(ActionEvent event, String view, String title) throws IOException {
         try {
             Parent parent = FXMLLoader.load(SceneSwitcher.class.getResource(view));

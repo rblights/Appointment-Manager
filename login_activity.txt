@@ -1,0 +1,98 @@
+Feb 20, 2022 12:51:08 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 12:51 FAILED - Username:  Password: 
+Feb 20, 2022 12:51:16 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 12:51 FAILED - Username: t Password: t
+Feb 20, 2022 12:51:32 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 12:51 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:02:12 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:02 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:06:06 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:05 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:07:08 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:07 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:10:50 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:10 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:15:59 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:15 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:39:40 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:39 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:40:51 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:40 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:41:53 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:41 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:44:31 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:44 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:47:30 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:47 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:51:36 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:51 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:52:40 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:52 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:55:40 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:55 SUCCESS - Username: test Password: test
+Feb 20, 2022 2:58:40 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 14:58 SUCCESS - Username: test Password: test
+Feb 20, 2022 3:01:38 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 15:01 SUCCESS - Username: test Password: test
+Feb 20, 2022 3:06:13 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 15:06 SUCCESS - Username: test Password: test
+Feb 20, 2022 4:20:32 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 16:20 SUCCESS - Username: test Password: test
+Feb 20, 2022 4:24:36 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 16:24 SUCCESS - Username: test Password: test
+Feb 20, 2022 4:29:07 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 16:29 SUCCESS - Username: test Password: test
+Feb 20, 2022 4:30:32 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 16:30 SUCCESS - Username: test Password: test
+Feb 20, 2022 4:35:58 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 16:35 SUCCESS - Username: test Password: test
+Feb 20, 2022 4:37:56 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 16:37 SUCCESS - Username: test Password: test
+Feb 20, 2022 4:50:01 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 16:49 SUCCESS - Username: test Password: test
+Feb 20, 2022 4:54:03 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 16:53 SUCCESS - Username: test Password: test
+Feb 20, 2022 5:15:49 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 17:15 SUCCESS - Username: test Password: test
+Feb 20, 2022 5:17:44 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 17:17 SUCCESS - Username: test Password: test
+Feb 20, 2022 5:26:11 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 17:26 SUCCESS - Username: test Password: test
+Feb 20, 2022 5:48:36 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 17:48 SUCCESS - Username: test Password: test
+Feb 20, 2022 5:50:27 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 17:50 SUCCESS - Username: test Password: test
+Feb 20, 2022 6:19:46 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 18:19 SUCCESS - Username: test Password: test
+Feb 20, 2022 6:22:14 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 18:22 SUCCESS - Username: test Password: test
+Feb 20, 2022 6:36:36 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 18:36 SUCCESS - Username: test Password: test
+Feb 20, 2022 6:38:08 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-20-2022 18:38 SUCCESS - Username: test Password: test
+Feb 21, 2022 5:31:31 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 05:31 SUCCESS - Username: test Password: test
+Feb 21, 2022 5:34:25 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 05:34 SUCCESS - Username: test Password: test
+févr. 21, 2022 5:35:34 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 05:35 SUCCESS - Username: test Password: test
+févr. 21, 2022 5:43:11 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 05:42 SUCCESS - Username: test Password: test
+févr. 21, 2022 6:10:32 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 06:10 SUCCESS - Username: test Password: test
+Feb 21, 2022 6:54:31 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 06:54 SUCCESS - Username: test Password: test
+Feb 21, 2022 6:56:45 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 06:56 SUCCESS - Username: test Password: test
+Feb 21, 2022 6:58:44 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 06:58 SUCCESS - Username: test Password: test
+févr. 21, 2022 7:04:33 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 07:04 SUCCESS - Username: test Password: test
+Feb 21, 2022 7:09:05 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 07:08 SUCCESS - Username: test Password: test
+Feb 21, 2022 8:18:15 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 08:18 SUCCESS - Username: test Password: test
+Feb 21, 2022 9:48:27 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 09:48 FAILED - Username: test Password: teest
+Feb 21, 2022 9:48:36 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-21-2022 09:48 SUCCESS - Username: test Password: test

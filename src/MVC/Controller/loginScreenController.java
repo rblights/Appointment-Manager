@@ -130,6 +130,8 @@ public class loginScreenController implements Initializable {
         }
     }
 
+    /** Validates login info, displays error messages.
+     * @param event */
     public void loginButtonOnAction(ActionEvent event) throws SQLException {
 
         if (usernameTextfield.getText().isBlank() || passwordTextfield.getText().isBlank()) {
@@ -176,7 +178,9 @@ public class loginScreenController implements Initializable {
         }
     }
 
-    public void exitButtonOnAction(ActionEvent e) {
+    /** Closes the program.
+     * @param event*/
+    public void exitButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }

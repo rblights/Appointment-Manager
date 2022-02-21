@@ -72,6 +72,8 @@ public class updateCustomerController implements Initializable {
     @FXML
     private Button cancelCustomerButton;
 
+    /** Filters the divisionComboBox by countryComboBox selection.
+     * @param event */
     public void countryComboboxOnAction(ActionEvent event) {
         ObservableList<Division> filteredDivisions = FXCollections.observableArrayList();
         for (Division division : DBdivisions.getAllDivisions()) {
@@ -87,6 +89,8 @@ public class updateCustomerController implements Initializable {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }
 
+    /** Updates customer to the DB.
+     * @param event */
     public void updateButtonOnAction(ActionEvent event) throws IOException {
 
         int updatedDivisionID = 0;
