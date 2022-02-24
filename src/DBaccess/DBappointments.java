@@ -23,7 +23,7 @@ public class DBappointments {
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM appointments";
+            String sql = "SELECT Appointment_ID, Title, Description, Location, Type, Start, End, Customer_ID, User_ID, appointments.Contact_ID, contacts.Contact_Name  FROM appointments, contacts WHERE appointments.Contact_ID = contacts.Contact_ID";
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -39,11 +39,12 @@ public class DBappointments {
                 int customerID = rs.getInt("Customer_ID");
                 int userID = rs.getInt("User_ID");
                 int contactID = rs.getInt("Contact_ID");
+                String contactName = rs.getString("Contact_Name");
 
                 Appointment appointment = new Appointment(appointmentID, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType,
                         DTFormatter.format.format((appointmentStart.toLocalDateTime().atZone(ZoneId.of("UTC")).withZoneSameInstant(User.getCurrentUserZoneID())).toLocalDateTime()),
                         DTFormatter.format.format((appointmentEnd.toLocalDateTime().atZone(ZoneId.of("UTC")).withZoneSameInstant(User.getCurrentUserZoneID())).toLocalDateTime()),
-                        customerID, contactID, userID);
+                        customerID, contactID, contactName, userID);
 
                 appointmentList.add(appointment);
             }

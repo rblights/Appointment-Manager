@@ -11,10 +11,11 @@ public class Appointment {
     private String end;
     private int customer_ID;
     private int contact_ID;
+    private String contact_Name;
     private int user_ID;
 
     public Appointment(int appointment_ID, String title, String description, String location, String type, String start,
-                       String end, int customer_ID, int contact_ID, int user_ID) {
+                       String end, int customer_ID, int contact_ID, String contact_Name, int user_ID) {
 
         setAppointment_ID(appointment_ID);
         setTitle(title);
@@ -25,6 +26,7 @@ public class Appointment {
         setEnd(end);
         setCustomer_ID(customer_ID);
         setContact_ID(contact_ID);
+        setContact_Name(contact_Name);
         setUser_ID(user_ID);
     }
 
@@ -98,6 +100,14 @@ public class Appointment {
 
     public void setContact_ID(int contact_ID) {
         this.contact_ID = contact_ID;
+    }
+
+    public String getContact_Name() {
+        return contact_Name;
+    }
+
+    public void setContact_Name(String contact_Name) {
+        this.contact_Name = contact_Name;
     }
 
     public int getUser_ID() {

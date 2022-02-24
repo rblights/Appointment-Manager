@@ -71,8 +71,8 @@ public class appointmentsScreenController implements Initializable {
         locationColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("location"));
         locationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        contactColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("contact_ID"));
-        contactColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        contactColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("contact_Name"));
+        contactColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         typeColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("type"));
         typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -144,7 +144,7 @@ public class appointmentsScreenController implements Initializable {
     private TableColumn<Appointment, Integer> userColumn;
 
     @FXML
-    private TableColumn<Appointment, Integer> contactColumn;
+    private TableColumn<Appointment, String> contactColumn;
 
     public void customerViewButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
