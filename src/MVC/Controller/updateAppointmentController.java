@@ -121,10 +121,10 @@ public class updateAppointmentController implements Initializable {
         AtomicBoolean conflictFound = new AtomicBoolean(false);
         ObservableList<Appointment> appointments = DBappointments.getAllAppointments();
         appointments.forEach ((appointment) -> {
-            LocalDateTime oldStart = LocalDateTime.parse(appointment.getStart(), DTFormatter.format);
-            LocalDateTime oldEnd = LocalDateTime.parse(appointment.getEnd(), DTFormatter.format);
-            LocalDateTime newStart = LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue());
-            LocalDateTime newEnd = LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue());
+            LocalDateTime oldStart = LocalDateTime.parse(appointment.getStart(), DTFormatter.format).atZone(ZoneId.of("UTC")).toLocalDateTime();
+            LocalDateTime oldEnd = LocalDateTime.parse(appointment.getEnd(), DTFormatter.format).atZone(ZoneId.of("UTC")).toLocalDateTime();
+            LocalDateTime newStart = LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).atZone(ZoneId.of("UTC")).toLocalDateTime();
+            LocalDateTime newEnd = LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()).atZone(ZoneId.of("UTC")).toLocalDateTime();
 
             if (customerIDCombobox.getValue().getCustomer_ID() == appointment.getCustomer_ID() && Integer.parseInt(IDTextfield.getText()) != appointment.getAppointment_ID()) {
                 if ((newStart.isAfter(oldStart) || newStart.isEqual(oldStart)) && (newStart.isBefore(oldEnd)))
