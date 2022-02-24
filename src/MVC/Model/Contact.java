@@ -37,6 +37,6 @@ public class Contact {
     }
 
     public String toString() {
-        return String.format("%s", contactName);
+        return String.format("%d: %s", contactID, contactName);
     }
 }

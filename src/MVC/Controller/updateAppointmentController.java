@@ -140,18 +140,20 @@ public class updateAppointmentController implements Initializable {
             alert.setContentText(RBundle.getrBundle().getString("conflictFound"));
             alert.showAndWait();
         } else {
-            DBappointments.updateAppointment(Integer.parseInt(IDTextfield.getText()),
-                    titleTextfield.getText(),
-                    descriptionTextfield.getText(),
-                    locationTextfield.getText(),
-                    typeTextfield.getText(),
-                    LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
-                    LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
-                    customerIDCombobox.getSelectionModel().getSelectedItem().getCustomer_ID(),
-                    Integer.parseInt(userIDTextfield.getText()),
-                    contactCombobox.getSelectionModel().getSelectedItem().getContactID());
+            if (LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).isBefore(LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()))) {
+                DBappointments.updateAppointment(Integer.parseInt(IDTextfield.getText()),
+                        titleTextfield.getText(),
+                        descriptionTextfield.getText(),
+                        locationTextfield.getText(),
+                        typeTextfield.getText(),
+                        LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
+                        LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
+                        customerIDCombobox.getSelectionModel().getSelectedItem().getCustomer_ID(),
+                        Integer.parseInt(userIDTextfield.getText()),
+                        contactCombobox.getSelectionModel().getSelectedItem().getContactID());
 
-            SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");
+                SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");
+            }
         }
     }
 

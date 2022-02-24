@@ -31,6 +31,8 @@ public class updateCustomerController implements Initializable {
 
         Customer selectedCustomer = Selector.getSelectedCustomer();
 
+
+
         IDTextfield.setText(Integer.toString(selectedCustomer.getCustomer_ID()));
         nameTextfield.setText(selectedCustomer.getCustomer_Name());
         addressTextfield.setText(selectedCustomer.getAddress());
@@ -43,6 +45,13 @@ public class updateCustomerController implements Initializable {
                     if (country.getCountry_ID() == division.getCountry_ID())
                     countryCombobox.setValue(country);
             }
+
+        ObservableList<Division> filteredDivisions = FXCollections.observableArrayList();
+        for (Division division : DBdivisions.getAllDivisions()) {
+            if (division.getCountry_ID() == countryCombobox.getSelectionModel().getSelectedItem().getCountry_ID())
+                filteredDivisions.add(division);
+        }
+        divisionCombobox.getItems().addAll(filteredDivisions);
     }
 
     @FXML

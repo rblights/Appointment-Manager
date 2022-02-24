@@ -43,7 +43,7 @@ public class DBappointments {
                 Appointment appointment = new Appointment(appointmentID, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType,
                         DTFormatter.format.format((appointmentStart.toLocalDateTime().atZone(ZoneId.of("UTC")).withZoneSameInstant(User.getCurrentUserZoneID())).toLocalDateTime()),
                         DTFormatter.format.format((appointmentEnd.toLocalDateTime().atZone(ZoneId.of("UTC")).withZoneSameInstant(User.getCurrentUserZoneID())).toLocalDateTime()),
-                        customerID, userID, contactID);
+                        customerID, contactID, userID);
 
                 appointmentList.add(appointment);
             }

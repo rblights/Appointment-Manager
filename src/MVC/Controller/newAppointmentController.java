@@ -121,16 +121,18 @@ public class newAppointmentController implements Initializable {
             alert.setContentText(RBundle.getrBundle().getString("conflictFound"));
             alert.showAndWait();
         } else {
-            DBappointments.insertAppointment(titleTextfield.getText(),
-                    descriptionTextfield.getText(),
-                    locationTextfield.getText(),
-                    typeTextfield.getText(),
-                    LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
-                    LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
-                    Integer.parseInt(String.valueOf(customerIDCombobox.getValue())),
-                    chosenContactID);
+            if (LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).isBefore(LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()))) {
+                DBappointments.insertAppointment(titleTextfield.getText(),
+                        descriptionTextfield.getText(),
+                        locationTextfield.getText(),
+                        typeTextfield.getText(),
+                        LocalDateTime.of(startDatepicker.getValue(), startCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
+                        LocalDateTime.of(endDatepicker.getValue(), endCombobox.getValue()).atZone(User.getCurrentUserZoneID()).withZoneSameInstant(ZoneId.of("UTC")),
+                        customerIDCombobox.getSelectionModel().getSelectedItem().getCustomer_ID(),
+                        contactCombobox.getSelectionModel().getSelectedItem().getContactID());
 
-            SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Customer View");
+                SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Customer View");
+            }
         }
     }
 

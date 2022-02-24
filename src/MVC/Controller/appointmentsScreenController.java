@@ -169,7 +169,7 @@ public class appointmentsScreenController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(RBundle.getrBundle().getString("appointmentDeleted"));
-            alert.setContentText(Integer.toString(appointmentTableview.getSelectionModel().getSelectedItem().getAppointment_ID()) + " - " + appointmentTableview.getSelectionModel().getSelectedItem().getType());
+            alert.setContentText("ID: " + Integer.toString(appointmentTableview.getSelectionModel().getSelectedItem().getAppointment_ID()) + ", Type: " + appointmentTableview.getSelectionModel().getSelectedItem().getType());
             alert.showAndWait();
             DBappointments.deleteAppointment(appointmentTableview.getSelectionModel().getSelectedItem());
             appointmentTableview.setItems(DBappointments.getAllAppointments());
