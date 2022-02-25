@@ -7,7 +7,8 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-/** Records login activity. */
+/** ActivityLog Class.
+ * Records login activity. */
 public class ActivityLog {
 
     private static Logger logger;
@@ -27,14 +28,20 @@ public class ActivityLog {
         }
     }
 
+    /** logger getter.
+     * @return logger*/
     public static Logger getLogger() {
         return logger;
     }
 
+    /** logger setter.
+     * @param logger */
     public static void setLogger(Logger logger) {
         ActivityLog.logger = logger;
     }
 
+    /** currentTime getter.
+     * @return currentTime*/
     public static String getCurrentTime() {
         return currentTime;
     }

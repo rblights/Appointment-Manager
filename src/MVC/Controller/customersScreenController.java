@@ -87,14 +87,20 @@ public class customersScreenController implements Initializable {
     @FXML
     private TableColumn<Customer, Integer> divisionColumn;
 
+    /** Switches scenes.
+     * @param event */
     public void appointmentViewButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");
     }
 
+    /** Switches scenes.
+     * @param event */
     public void addButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/newCustomer.fxml", "Add Customer");
     }
 
+    /** Selects customer and switches scenes to the Update Customer screen.
+     * @param event  */
     public void updateButtonOnAction(ActionEvent event) throws IOException {
         Selector.setSelectedCustomer(customerTableview.getSelectionModel().getSelectedItem());
         SceneSwitcher.switchScene(event, "../MVC/View/updateCustomer.fxml", "Update Customer");
@@ -114,6 +120,8 @@ public class customersScreenController implements Initializable {
         }
     }
 
+    /** Switches scenes.
+     * @param event */
     public void reportsButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/reportsScreen.fxml", "Reports");
     }

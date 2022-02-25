@@ -9,8 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** Class that accesses the countries table of the DB. */
 public class DBcountries {
 
+    /** Gets the DB connection to query DB and return list of countries.
+     @return countryList*/
     public static ObservableList<Country> getAllCountries() {
         ObservableList<Country> countryList = FXCollections.observableArrayList();
 

@@ -9,8 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** Class that accesses the contacts table of the DB. */
 public class DBcontacts {
 
+    /** Gets the DB connection to query DB and return list of contacts.
+     @return contactList*/
     public static ObservableList<Contact> getAllContacts() {
         ObservableList<Contact> contactList = FXCollections.observableArrayList();
 

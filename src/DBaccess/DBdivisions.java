@@ -9,8 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** Class that accesses the divisions table of the DB. */
 public class DBdivisions {
 
+    /** Gets the DB connection to query DB and return list of divisions.
+     @return divisionList*/
     public static ObservableList<Division> getAllDivisions() {
         ObservableList<Division> divisionList = FXCollections.observableArrayList();
 

@@ -9,8 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** Class that accesses the users table of the DB. */
 public class DBusers {
 
+    /** Gets the DB connection to query DB and return list of users.
+     @return userList*/
     public static ObservableList<User> getAllUsers() {
         ObservableList<User> userList = FXCollections.observableArrayList();
 

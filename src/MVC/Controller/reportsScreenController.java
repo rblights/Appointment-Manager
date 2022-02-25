@@ -36,6 +36,8 @@ public class reportsScreenController {
     private Button contactButton;
 
 
+    /** Switches scenes.
+     * @param event */
     public void cancelButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customers View");
     }

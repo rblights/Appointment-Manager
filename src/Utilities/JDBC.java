@@ -3,6 +3,7 @@ package Utilities;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/** DB Connection Class. */
 public class JDBC {
 
     private static final String protocol = "jdbc";
@@ -15,6 +16,7 @@ public class JDBC {
     private static String password = "Passw0rd!"; // Password
     public static Connection connection;  // Connection Interface
 
+    /** Opens DB connection. */
     public static void openConnection()
     {
         try {
@@ -28,10 +30,13 @@ public class JDBC {
         }
     }
 
+    /** Gets DB connection.
+     * @return connection*/
     public static Connection getConnection() {
         return connection;
     }
 
+    /** Closes DB connection. */
     public static void closeConnection() {
         try {
             connection.close();

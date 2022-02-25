@@ -14,8 +14,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/** Class that accesses the customers table of the DB. */
 public class DBcustomers {
 
+    /** Gets the DB connection to query DB and return list of customers.
+     @return customerList*/
     public static ObservableList<Customer> getAllCustomers() {
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
@@ -41,6 +44,12 @@ public class DBcustomers {
         return customerList;
     }
 
+    /** Uses a PreparedStatement to insert a customer into the DB.
+     * @param Address
+     * @param Customer_Name
+     * @param Division_ID
+     * @param Phone
+     * @param Postal_Code */
     public static void insertCustomer(String Customer_Name, String Address, String Postal_Code, String Phone, Division Division_ID) throws SQLException {
 
         try {
@@ -66,6 +75,13 @@ public class DBcustomers {
         }
     }
 
+    /** Uses a PreparedStatement to update a customer in the DB.
+     * @param Postal_Code
+     * @param Division_ID
+     * @param Phone
+     * @param Customer_Name
+     * @param Address
+     * @param Customer_ID */
     public static void updateCustomer(int Customer_ID,String Customer_Name, String Address, String Postal_Code, String Phone, int Division_ID) {
 
         try {
@@ -90,6 +106,8 @@ public class DBcustomers {
         }
     }
 
+    /** Uses a PreparedStatement to delete a customer from the DB.
+     * @param customer */
     public static void deleteCustomer(Customer customer) throws SQLException {
         for (Appointment appointment : DBappointments.getAllAppointments()) {
             if (appointment.getCustomer_ID() == customer.getCustomer_ID())

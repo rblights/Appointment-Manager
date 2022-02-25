@@ -94,6 +94,8 @@ public class updateCustomerController implements Initializable {
         divisionCombobox.getItems().addAll(filteredDivisions);
     }
 
+    /** Switches scenes.
+     * @param event */
     public void cancelButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }
@@ -102,18 +104,13 @@ public class updateCustomerController implements Initializable {
      * @param event */
     public void updateButtonOnAction(ActionEvent event) throws IOException {
 
-        int updatedDivisionID = 0;
-
-        for (Division division : DBdivisions.getAllDivisions())
-            if (division == divisionCombobox.getSelectionModel().getSelectedItem())
-                updatedDivisionID = division.getDivision_ID();
 
         DBcustomers.updateCustomer(Integer.parseInt(IDTextfield.getText()),
                                     nameTextfield.getText(),
                                     addressTextfield.getText(),
                                     postalCodeTextfield.getText(),
                                     phoneTextfield.getText(),
-                                    updatedDivisionID);
+                                    divisionCombobox.getSelectionModel().getSelectedItem().getDivision_ID());
 
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }

@@ -82,6 +82,8 @@ public class newCustomerController<Divison> implements Initializable {
 
     }
 
+    /** Switches scenes.
+     * @param event */
     public void cancelButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }

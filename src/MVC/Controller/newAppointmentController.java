@@ -136,6 +136,8 @@ public class newAppointmentController implements Initializable {
         }
     }
 
+    /** Switches scenes.
+     * @param event */
     public void cancelButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/appointmentsScreen.fxml", "Appointment View");
     }

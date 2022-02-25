@@ -23,6 +23,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+/** Controls the Appointment Screen. */
 public class appointmentsScreenController implements Initializable {
 
     @Override
@@ -146,10 +147,14 @@ public class appointmentsScreenController implements Initializable {
     @FXML
     private TableColumn<Appointment, String> contactColumn;
 
+    /** Switches scenes to the Customer View.
+     * @param event  */
     public void customerViewButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/customersScreen.fxml", "Customer View");
     }
 
+    /** Switches screens to the Add Appointment screen.
+     * @param event */
     public void addButtonOnAction(ActionEvent event) throws IOException {
         SceneSwitcher.switchScene(event, "../MVC/View/newAppointment.fxml", "Add Appointments");
     }

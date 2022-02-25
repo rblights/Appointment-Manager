@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
+/** Class that accesses the appointments table of the DB. */
 public class DBappointments {
 
     /** Gets the DB connection to query DB and return list of appointments.
