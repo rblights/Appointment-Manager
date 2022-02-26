@@ -1,5 +1,7 @@
 package MVC.Model;
 
+import javafx.beans.value.ObservableValue;
+
 /** Customer Class. */
 public class Customer {
 

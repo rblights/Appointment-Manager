@@ -9,6 +9,7 @@ import Utilities.SceneSwitcher;
 import Utilities.Selector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,10 +27,10 @@ import java.util.ResourceBundle;
 /** Controls the Appointment Screen. */
 public class appointmentsScreenController implements Initializable {
 
+    ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
         try {
             appointments = DBappointments.getAllAppointments();
@@ -184,6 +185,7 @@ public class appointmentsScreenController implements Initializable {
     }
 
     /** Controls the Week/Month View toggle for upcoming week and current month.
+     * Uses a lambda function to filter for upcoming week.
      * @param event */
     public void radioButtonOnAction(ActionEvent event) throws SQLException {
         if (monthRadioButton.isSelected()) {
@@ -196,14 +198,14 @@ public class appointmentsScreenController implements Initializable {
             appointmentTableview.refresh();
         }
         if (weekRadioButton.isSelected()) {
-            ObservableList<Appointment> weekAppointments = FXCollections.observableArrayList();
+            FilteredList<Appointment> filteredAppointments = new FilteredList<>(appointments);
+            filteredAppointments.setPredicate(row -> {
 
-            for (Appointment appointment : DBappointments.getAllAppointments()) {
+                LocalDateTime rowDate = LocalDateTime.parse(row.getStart(), DTFormatter.format);
 
-                if (LocalDateTime.parse(appointment.getStart(), DTFormatter.format).isAfter(LocalDateTime.now()) && LocalDateTime.parse(appointment.getStart(), DTFormatter.format).isBefore(LocalDateTime.now().plusDays(7)))
-                    weekAppointments.add(appointment);
-            }
-            appointmentTableview.setItems(weekAppointments);
+                return rowDate.isAfter(LocalDateTime.now()) && rowDate.isBefore(LocalDateTime.now().plusDays(7));
+            });
+            appointmentTableview.setItems(filteredAppointments);
             appointmentTableview.refresh();
         }
 

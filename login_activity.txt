@@ -130,3 +130,7 @@ Feb 24, 2022 12:34:27 PM MVC.Controller.loginScreenController loginButtonOnActio
 INFO: 02-24-2022 12:34 SUCCESS - Username: test Password: test
 Feb 24, 2022 1:29:07 PM MVC.Controller.loginScreenController loginButtonOnAction
 INFO: 02-24-2022 13:29 SUCCESS - Username: test Password: test
+Feb 25, 2022 10:03:23 AM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-25-2022 10:03 SUCCESS - Username: test Password: test
+Feb 26, 2022 1:51:39 PM MVC.Controller.loginScreenController loginButtonOnAction
+INFO: 02-26-2022 13:51 SUCCESS - Username: test Password: test
