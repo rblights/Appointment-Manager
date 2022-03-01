@@ -21,7 +21,9 @@ import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 /** Controls the Appointment Screen. */
@@ -46,14 +48,24 @@ public class appointmentsScreenController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
         if (User.isFirstLogin()) {
+            
+            int upcomingID = 0;
+            LocalDate upcomingDate = null;
+            LocalTime upcomingTime = null;
+            
             for (Appointment appointment : appointments)
                 if (LocalDateTime.parse(appointment.getStart(), DTFormatter.format).isBefore(LocalDateTime.now().plusMinutes(15)) && LocalDateTime.parse(appointment.getStart(), DTFormatter.format).isAfter(LocalDateTime.now()) && alertShown == false) {
                     upcomingAppointments++;
+                    upcomingID = appointment.getAppointment_ID();
+                    upcomingDate = LocalDateTime.parse(appointment.getStart(), DTFormatter.format).toLocalDate();
+                    upcomingTime = LocalDateTime.parse(appointment.getStart(), DTFormatter.format).toLocalTime();
                 }
             if (upcomingAppointments == 0)
                 alert.setContentText(RBundle.getrBundle().getString("noUpcomingAppointment"));
-            else
-                alert.setContentText(RBundle.getrBundle().getString("upcomingAppointment"));
+            else {
+                alert.setTitle(RBundle.getrBundle().getString("upcomingAppointment"));
+                alert.setContentText("ID: " + upcomingID + ", Date: " + upcomingDate + ", Time: " + upcomingTime);
+            }
 
             alert.showAndWait();
             alertShown = true;
